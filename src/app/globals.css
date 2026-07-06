@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===== Japão Nas Mãos — Design System (from telas/jap_o_nas_m_os/DESIGN.md) ===== */
+@theme {
+  /* Colors */
+  --color-surface: #fff8f8;
+  --color-surface-dim: #f0d3d9;
+  --color-surface-bright: #fff8f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fff0f2;
+  --color-surface-container: #ffe8ed;
+  --color-surface-container-high: #fee1e7;
+  --color-surface-container-highest: #f9dbe2;
+  --color-on-surface: #27171c;
+  --color-on-surface-variant: #5a3f47;
+  --color-inverse-surface: #3e2b31;
+  --color-inverse-on-surface: #ffecf0;
+  --color-outline: #8e6f77;
+  --color-outline-variant: #e2bdc6;
+  --color-surface-tint: #b90063;
+  --color-primary: #b50061;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #e10b7a;
+  --color-on-primary-container: #fffbff;
+  --color-inverse-primary: #ffb1c8;
+  --color-secondary: #6a5a64;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #f3dce8;
+  --color-on-secondary-container: #71606a;
+  --color-tertiary: #006b11;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #008818;
+  --color-on-tertiary-container: #f8fff0;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #ffd9e2;
+  --color-primary-fixed-dim: #ffb1c8;
+  --color-on-primary-fixed: #3e001d;
+  --color-on-primary-fixed-variant: #8e004a;
+  --color-secondary-fixed: #f3dce8;
+  --color-secondary-fixed-dim: #d6c1cc;
+  --color-on-secondary-fixed: #241820;
+  --color-on-secondary-fixed-variant: #52424c;
+  --color-tertiary-fixed: #87fc7c;
+  --color-tertiary-fixed-dim: #6bdf63;
+  --color-on-tertiary-fixed: #002202;
+  --color-on-tertiary-fixed-variant: #00530a;
+  --color-background: #fff8f8;
+  --color-on-background: #27171c;
+  --color-surface-variant: #f9dbe2;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Fonts */
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Spacing tokens */
+  --spacing-base: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+
+  /* Max container width */
+  --container-max: 1200px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+}
+
+/* Component helpers reused across screens */
+.product-card-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+.product-card-shadow:hover {
+  box-shadow: 0 8px 30px rgba(181, 0, 97, 0.08);
+}
+.glass-header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  user-select: none;
+}
+
+/* Tipografia para conteúdo rico (TipTap) — páginas e descrição de produto */
+.prose-jnm {
+  color: var(--color-on-surface-variant);
+  line-height: 1.7;
+}
+.prose-jnm h1,
+.prose-jnm h2,
+.prose-jnm h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.prose-jnm h1 { font-size: 1.75rem; }
+.prose-jnm h2 { font-size: 1.4rem; }
+.prose-jnm h3 { font-size: 1.15rem; }
+.prose-jnm p { margin-bottom: 1em; }
+.prose-jnm ul,
+.prose-jnm ol {
+  margin: 0 0 1em 1.25em;
+}
+.prose-jnm ul { list-style: disc; }
+.prose-jnm ol { list-style: decimal; }
+.prose-jnm a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.prose-jnm strong { color: var(--color-on-surface); }
+.prose-jnm blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1em;
+  color: var(--color-on-surface-variant);
+  font-style: italic;
+  margin: 1em 0;
 }

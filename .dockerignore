@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+telas
+*.zip
+npm-debug.log
+.env
+.env.local
+README.md

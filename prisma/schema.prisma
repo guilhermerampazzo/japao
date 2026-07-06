@@ -1,0 +1,291 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELED
+}
+
+enum PaymentMethod {
+  PIX
+  CARD
+  BOLETO
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  REFUNDED
+  CANCELED
+}
+
+enum CouponType {
+  PERCENT
+  FIXED
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  cpf       String?
+  phone     String?
+  role      Role      @default(CUSTOMER)
+  addresses Address[]
+  orders    Order[]
+  reviews   Review[]
+  cart      Cart?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Address {
+  id          String  @id @default(cuid())
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cep         String
+  street      String
+  number      String
+  complement  String?
+  district    String
+  city        String
+  state       String
+  isDefault   Boolean @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String
+  slug     String    @unique
+  image    String?
+  products Product[]
+}
+
+model Product {
+  id              String           @id @default(cuid())
+  name            String
+  slug            String           @unique
+  description     String
+  descriptionHtml String?
+  brand           String?
+  categoryId      String
+  category        Category         @relation(fields: [categoryId], references: [id])
+  active          Boolean          @default(true)
+  featured        Boolean          @default(false)
+  ratingAvg       Float            @default(0)
+  weightGrams     Int              @default(300)
+  images          ProductImage[]
+  variants        ProductVariant[]
+  reviews         Review[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  order     Int     @default(0)
+}
+
+model ProductVariant {
+  id                 String      @id @default(cuid())
+  productId          String
+  product            Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku                String      @unique
+  name               String
+  priceCents         Int
+  compareAtCents     Int?
+  stock              Int         @default(0)
+  orderItems         OrderItem[]
+  cartItems          CartItem[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating    Int
+  comment   String
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Coupon {
+  id         String     @id @default(cuid())
+  code       String     @unique
+  type       CouponType
+  value      Int        // percent (0-100) or cents
+  minCents   Int        @default(0)
+  expiresAt  DateTime?
+  maxUses    Int?
+  usedCount  Int        @default(0)
+  active     Boolean    @default(true)
+  orders     Order[]
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String         @id @default(cuid())
+  cartId    String
+  cart      Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id])
+  quantity  Int
+  @@unique([cartId, variantId])
+}
+
+model Order {
+  id            String       @id @default(cuid())
+  number        String       @unique
+  userId        String
+  user          User         @relation(fields: [userId], references: [id])
+  status        OrderStatus  @default(PENDING)
+  subtotalCents Int
+  shippingCents Int          @default(0)
+  discountCents Int          @default(0)
+  totalCents    Int
+  couponId      String?
+  coupon        Coupon?      @relation(fields: [couponId], references: [id])
+  // snapshot do endereço de entrega
+  shipCep       String
+  shipStreet    String
+  shipNumber    String
+  shipComplement String?
+  shipDistrict  String
+  shipCity      String
+  shipState     String
+  items         OrderItem[]
+  payment       Payment?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model OrderItem {
+  id           String         @id @default(cuid())
+  orderId      String
+  order        Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId    String
+  variant      ProductVariant @relation(fields: [variantId], references: [id])
+  productName  String
+  variantName  String
+  priceCents   Int
+  quantity     Int
+}
+
+model Payment {
+  id                String        @id @default(cuid())
+  orderId           String        @unique
+  order             Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  provider          String        @default("MERCADO_PAGO")
+  method            PaymentMethod
+  status            PaymentStatus @default(PENDING)
+  providerPaymentId String?
+  amountCents       Int
+  rawPayload        Json?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+/// Configurações globais do site (singleton — sempre id "singleton").
+/// Editável pelo admin em /admin/config e /admin/aparencia.
+model SiteSettings {
+  id                         String  @id @default("singleton")
+
+  // Identidade
+  storeName                  String  @default("Japão Nas Mãos")
+  tagline                    String  @default("Skincare Asiático")
+  logoAssetId                String?
+
+  // Contato / social
+  whatsappNumber             String  @default("5511999999999")
+  whatsappMessage            String  @default("Olá! Vim pelo site da Japão Nas Mãos e gostaria de ajuda.")
+  contactEmail                String  @default("contato@japaonasmaos.com")
+  instagramUrl                String?
+  footerAbout                 String  @default("Sua ponte direta com o melhor do skincare e rituais de beleza asiáticos. Produtos 100% originais e selecionados com amor.")
+
+  // Loja / frete
+  originCep                   String  @default("01001000")
+  freeShippingThresholdCents  Int     @default(25000)
+
+  // Hero (home)
+  heroEyebrow                 String  @default("Novidade Exclusiva")
+  heroTitle                   String  @default("Skincare asiático de verdade, com resultados reais")
+  heroSubtitle                String  @default("Descubra o segredo da pele de vidro com curadoria especializada de produtos diretamente da Coreia e do Japão.")
+  heroCtaLabel                 String  @default("Comprar agora")
+  heroCtaHref                  String  @default("/categoria/skincare-coreano")
+  heroImageAssetId             String?
+  heroImageUrl                 String? // fallback direto por URL (sem passar pela mídia)
+
+  // Banner promocional (home)
+  promoActive                  Boolean @default(true)
+  promoBadge                   String  @default("HELLO JAPÃO")
+  promoTitle                   String  @default("10% de desconto na primeira compra")
+  promoCouponCode              String  @default("hello10")
+
+  // SEO padrão
+  seoTitle                     String  @default("Japão Nas Mãos | Skincare Asiático Premium")
+  seoDescription               String  @default("Skincare coreano e japonês autêntico. Descubra o segredo da pele de vidro com curadoria especializada.")
+
+  updatedAt                    DateTime @updatedAt
+}
+
+/// Item do menu do topo (Header), ordenável pelo admin em /admin/menu.
+model NavItem {
+  id     String @id @default(cuid())
+  label  String
+  href   String
+  order  Int    @default(0)
+}
+
+/// Página de conteúdo (Sobre, Privacidade, Termos, etc.) editada em TipTap.
+model Page {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  contentHtml     String
+  published       Boolean  @default(true)
+  seoTitle        String?
+  seoDescription  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+/// Biblioteca de mídia (uploads). Reaproveitada por produtos, hero, logo, páginas.
+model MediaAsset {
+  id         String   @id @default(cuid())
+  filename   String
+  url        String
+  mimeType   String
+  sizeBytes  Int
+  width      Int?
+  height     Int?
+  createdAt  DateTime @default(now())
+}

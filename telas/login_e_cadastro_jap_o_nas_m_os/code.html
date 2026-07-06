@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Japão Nas Mãos - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tab-active {
+            border-bottom: 2px solid #b50061;
+            color: #b50061;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            color: #5a3f47;
+            border-bottom: 2px solid transparent;
+        }
+        .glass-overlay {
+            background: rgba(255, 248, 248, 0.2);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#006b11",
+                      "on-tertiary-fixed": "#002202",
+                      "primary-fixed-dim": "#ffb1c8",
+                      "secondary": "#6a5a64",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#fff0f2",
+                      "secondary-fixed-dim": "#d6c1cc",
+                      "primary": "#b50061",
+                      "outline": "#8e6f77",
+                      "surface-tint": "#b90063",
+                      "outline-variant": "#e2bdc6",
+                      "on-tertiary-fixed-variant": "#00530a",
+                      "primary-container": "#e10b7a",
+                      "on-primary-container": "#fffbff",
+                      "background": "#fff8f8",
+                      "surface-variant": "#f9dbe2",
+                      "tertiary-fixed": "#87fc7c",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#f3dce8",
+                      "surface-bright": "#fff8f8",
+                      "secondary-container": "#f3dce8",
+                      "inverse-on-surface": "#ffecf0",
+                      "on-secondary-fixed-variant": "#52424c",
+                      "on-secondary-fixed": "#241820",
+                      "on-primary-fixed-variant": "#8e004a",
+                      "inverse-surface": "#3e2b31",
+                      "on-surface-variant": "#5a3f47",
+                      "on-secondary-container": "#71606a",
+                      "surface-container": "#ffe8ed",
+                      "on-primary": "#ffffff",
+                      "on-background": "#27171c",
+                      "primary-fixed": "#ffd9e2",
+                      "on-surface": "#27171c",
+                      "surface-dim": "#f0d3d9",
+                      "surface-container-high": "#fee1e7",
+                      "inverse-primary": "#ffb1c8",
+                      "on-tertiary-container": "#f8fff0",
+                      "surface": "#fff8f8",
+                      "on-primary-fixed": "#3e001d",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#6bdf63",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#008818",
+                      "surface-container-highest": "#f9dbe2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "12px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "lg": "40px",
+                      "xl": "64px",
+                      "container-max": "1200px",
+                      "xs": "8px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "price-display": ["Inter"],
+                      "display-lg": ["Poppins"],
+                      "label-md": ["Inter"],
+                      "headline-sm": ["Poppins"],
+                      "button-text": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Poppins"],
+                      "display-lg-mobile": ["Poppins"]
+              },
+              "fontSize": {
+                      "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<main class="flex flex-col md:flex-row min-h-screen w-full">
+<!-- Left Side: Visual Hero (Desktop only) -->
+<section class="hidden md:flex md:w-1/2 relative overflow-hidden bg-surface-container-high">
+<div class="absolute inset-0 z-0">
+<img alt="Ambiente de skincare elegante" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkE1dc_LiHSRSiD3Xv-PUKJ1-z-Yjdi5uoq0vsxGszfHC-XvsZDIQLXAop9RFIN4BSKk2xaGEB3H_5trMcEqBymp8xF-4dDQdTMuG44JvaUhfJsV31c42czf9g7E_z3IOB8_jEFAavYQAQdqU4YZBseRl64yAVUTMDW1B1ajnxPD6icnLxPeD_psHhlXUGLm8SDLGwdj6ilmLlxC7D-fZGuP364H-mUA0M0z_NRynmS5AGeOBijrYLQCuaAw3bBuBNO_pcpcXuDN0D"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+<div class="absolute inset-0 glass-overlay"></div>
+</div>
+<div class="relative z-10 flex flex-col justify-center items-start px-xl text-left max-w-lg">
+<h1 class="font-display-lg text-display-lg text-primary mb-md drop-shadow-sm">
+                    Sua jornada para a pele dos sonhos começa aqui.
+                </h1>
+<div class="w-16 h-1 bg-primary rounded-full"></div>
+</div>
+</section>
+<!-- Right Side: Auth Card -->
+<section class="flex-1 flex items-center justify-center bg-surface px-margin-mobile py-lg">
+<div class="w-full max-w-[440px]">
+<!-- Logo Anchor -->
+<div class="flex flex-col items-center mb-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary mb-xs">Japão Nas Mãos</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lumière Skin Care Rituals</p>
+</div>
+<!-- Tabs -->
+<div class="flex border-b border-surface-variant mb-md">
+<button class="flex-1 py-sm font-button-text text-button-text tab-active transition-all duration-200" id="tab-entrar" onclick="switchTab('entrar')">
+                        Entrar
+                    </button>
+<button class="flex-1 py-sm font-button-text text-button-text tab-inactive transition-all duration-200" id="tab-criar" onclick="switchTab('criar')">
+                        Criar conta
+                    </button>
+</div>
+<!-- Entrar Form -->
+<div class="block space-y-md" id="form-entrar">
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant">E-mail</label>
+<input class="w-full px-sm py-md rounded-lg border-2 border-error focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body-md text-on-surface" placeholder="exemplo@email.com" type="email" value="contato@japao.com"/>
+<span class="text-error font-body-sm text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                            E-mail inválido
+                        </span>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant">Senha</label>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Esqueci minha senha</a>
+</div>
+<div class="relative">
+<input class="w-full px-sm py-md rounded-lg border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body-md text-on-surface" placeholder="Sua senha" type="password"/>
+<button class="absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full py-md bg-primary text-on-primary font-button-text text-button-text rounded-xl shadow-md hover:bg-primary-container transition-all transform active:scale-[0.98]">
+                        Entrar
+                    </button>
+<div class="flex items-center gap-md py-md">
+<div class="flex-1 h-px bg-surface-variant"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">ou</span>
+<div class="flex-1 h-px bg-surface-variant"></div>
+</div>
+<button class="w-full flex items-center justify-center gap-sm py-md bg-surface-container-lowest border border-outline-variant text-on-surface font-button-text text-button-text rounded-xl hover:bg-surface-container-low transition-all">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTDDQA935jIWjh1CSoR9ykF5Cf5OJztUTOAZ-Q4mcZF1QlzRsuC4mW6prx88CVQF1BPKvH6QE3jWoJJY_86HN1GiJsL_S65yGqel1lUDJOjjJK3HIshw3TIocI49Oh4FHkVaSBDGYPJTcoc2P7Hg14JtfgSMXlvznEM_nnjiUQzgHGkZZ3HOfCqIoH883X9Z005ihrTX-Flmg7GSxTjFVg1Ylg4xs-J1zdwV2EPFfZgIK2pHbyntplSVHbjqle4VseSTAr1L9YdQGj"/>
+                        Entrar com Google
+                    </button>
+</div>
+<!-- Criar Conta Form (Hidden by default) -->
+<div class="hidden space-y-md" id="form-criar">
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant">Nome Completo</label>
+<input class="w-full px-sm py-md rounded-lg border border-outline-variant focus:border-primary outline-none transition-all font-body-md" placeholder="Como deseja ser chamado(a)" type="text"/>
+</div>
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant">E-mail</label>
+<input class="w-full px-sm py-md rounded-lg border border-outline-variant focus:border-primary outline-none transition-all font-body-md" placeholder="seu@email.com" type="email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant">Senha</label>
+<input class="w-full px-sm py-md rounded-lg border border-outline-variant focus:border-primary outline-none transition-all font-body-md" placeholder="Mín. 8 chars" type="password"/>
+</div>
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant">Confirmar</label>
+<input class="w-full px-sm py-md rounded-lg border border-outline-variant focus:border-primary outline-none transition-all font-body-md" placeholder="Repita a senha" type="password"/>
+</div>
+</div>
+<div class="flex items-start gap-sm py-xs">
+<input class="mt-1 rounded border-outline-variant text-primary focus:ring-primary" id="terms" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant leading-tight" for="terms">
+                            Aceito os <a class="text-primary hover:underline" href="#">termos e condições</a> e a política de privacidade.
+                        </label>
+</div>
+<button class="w-full py-md bg-primary text-on-primary font-button-text text-button-text rounded-xl shadow-md hover:bg-primary-container transition-all transform active:scale-[0.98]">
+                        Criar conta
+                    </button>
+</div>
+<!-- Footer Links -->
+<div class="mt-xl pt-lg border-t border-surface-variant text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        © 2024 Japão Nas Mãos. Todos os direitos reservados.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        function switchTab(tab) {
+            const tabEntrar = document.getElementById('tab-entrar');
+            const tabCriar = document.getElementById('tab-criar');
+            const formEntrar = document.getElementById('form-entrar');
+            const formCriar = document.getElementById('form-criar');
+
+            if (tab === 'entrar') {
+                tabEntrar.classList.remove('tab-inactive');
+                tabEntrar.classList.add('tab-active');
+                tabCriar.classList.remove('tab-active');
+                tabCriar.classList.add('tab-inactive');
+                
+                formEntrar.classList.remove('hidden');
+                formEntrar.classList.add('block');
+                formCriar.classList.add('hidden');
+                formCriar.classList.remove('block');
+            } else {
+                tabCriar.classList.remove('tab-inactive');
+                tabCriar.classList.add('tab-active');
+                tabEntrar.classList.remove('tab-active');
+                tabEntrar.classList.add('tab-inactive');
+
+                formCriar.classList.remove('hidden');
+                formCriar.classList.add('block');
+                formEntrar.classList.add('hidden');
+                formEntrar.classList.remove('block');
+            }
+        }
+
+        // Simple form validation visual demo
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

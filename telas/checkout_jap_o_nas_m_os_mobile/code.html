@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Checkout - Japão Nas Mãos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { @apply text-primary font-bold; }
+        .step-inactive { @apply text-on-surface-variant; }
+        .accordion-content { transition: max-height 0.3s ease-out; overflow: hidden; }
+        .accordion-collapsed { max-height: 0; }
+        .accordion-expanded { max-height: 1000px; }
+        
+        /* Custom scrollbar for mobile feel */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#e2bdc6",
+                      "tertiary-container": "#008818",
+                      "surface-tint": "#b90063",
+                      "surface-container-high": "#fee1e7",
+                      "surface-container": "#ffe8ed",
+                      "tertiary-fixed-dim": "#6bdf63",
+                      "primary-container": "#e10b7a",
+                      "inverse-surface": "#3e2b31",
+                      "surface-bright": "#fff8f8",
+                      "surface": "#fff8f8",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#f8fff0",
+                      "on-secondary-fixed-variant": "#52424c",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#f9dbe2",
+                      "secondary": "#6a5a64",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#d6c1cc",
+                      "error": "#ba1a1a",
+                      "tertiary": "#006b11",
+                      "background": "#fff8f8",
+                      "primary-fixed": "#ffd9e2",
+                      "on-tertiary-fixed": "#002202",
+                      "on-surface": "#27171c",
+                      "primary": "#b50061",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#fffbff",
+                      "on-tertiary-fixed-variant": "#00530a",
+                      "on-primary-fixed": "#3e001d",
+                      "surface-dim": "#f0d3d9",
+                      "primary-fixed-dim": "#ffb1c8",
+                      "surface-container-highest": "#f9dbe2",
+                      "tertiary-fixed": "#87fc7c",
+                      "secondary-container": "#f3dce8",
+                      "on-secondary-container": "#71606a",
+                      "surface-container-low": "#fff0f2",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#5a3f47",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#8e004a",
+                      "inverse-on-surface": "#ffecf0",
+                      "outline": "#8e6f77",
+                      "on-background": "#27171c",
+                      "secondary-fixed": "#f3dce8",
+                      "on-secondary-fixed": "#241820",
+                      "inverse-primary": "#ffb1c8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "xs": "8px",
+                      "gutter": "24px",
+                      "container-max": "1200px",
+                      "lg": "40px",
+                      "margin-mobile": "16px",
+                      "xl": "64px",
+                      "sm": "16px",
+                      "md": "24px"
+              },
+              "fontFamily": {
+                      "button-text": ["Inter"],
+                      "headline-md": ["Poppins"],
+                      "label-md": ["Inter"],
+                      "headline-sm": ["Poppins"],
+                      "body-sm": ["Inter"],
+                      "price-display": ["Inter"],
+                      "display-lg": ["Poppins"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg-mobile": ["Poppins"]
+              },
+              "fontSize": {
+                      "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed font-body-md overflow-x-hidden">
+<!-- Header Simplificado -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-center items-center px-margin-mobile h-16 bg-surface shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight">Japão Nas Mãos</h1>
+</header>
+<main class="mt-16 pb-32">
+<!-- Indicador de Etapas -->
+<nav class="w-full bg-surface-container-low px-margin-mobile py-4 sticky top-16 z-40">
+<div class="flex items-center justify-between max-w-md mx-auto">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-[10px] text-primary uppercase tracking-wider">Identificação</span>
+</div>
+<div class="h-[2px] flex-1 mx-2 bg-primary"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary">radio_button_checked</span>
+<span class="font-label-md text-[10px] text-primary uppercase tracking-wider">Pagamento</span>
+</div>
+<div class="h-[2px] flex-1 mx-2 bg-outline-variant"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant">radio_button_unchecked</span>
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-wider">Confirmação</span>
+</div>
+</div>
+</nav>
+<!-- Seções Empilhadas -->
+<div class="px-margin-mobile mt-6 space-y-6">
+<!-- Resumo do Pedido Accordion -->
+<section class="bg-surface rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-lowest" onclick="toggleAccordion('order-summary')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+<span class="font-headline-sm text-headline-sm">Resumo do Pedido</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-price-display text-primary">R$ 458,90</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="accordion-icon">expand_more</span>
+</div>
+</button>
+<div class="accordion-content accordion-collapsed px-4 border-t border-outline-variant bg-surface-bright" id="order-summary">
+<div class="py-4 space-y-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-surface-variant flex-shrink-0 bg-cover bg-center" data-alt="A high-end Japanese facial essence in a frosted glass bottle with minimalist black typography, reflecting a premium skincare ritual aesthetic. The lighting is soft and diffused, highlighting the elegant pink tones of the liquid within, set against a clean white and soft magenta backdrop." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgkUPAYkltiwnQsRYyFqeb_fMZVeut_ViwCTjhAMZIQKyHK4lE3mcDPQuhL7zIFCUG1TeTjwOfkI_Wvhf8LMuev89oEcx87m4_vr53QnQZqJ-7MLWQVo3CLNFHFEKPl3bThWRbDvm3lCgjl3nhMEv_aq0JWwXz2NWnUSfm9Sz8A1-xCPZX5_HeMlrCnMXmtdNMDXiBKzHsHhjzCJjkQ3hE_dAUuylEY34kgnzCYNdH84i3yVUAT9ki16ucRcfleTPm6qeeACCTc6tJ')"></div>
+<div class="flex-1">
+<p class="font-body-sm font-bold text-on-surface">Essence Facial de Arroz Koshikari</p>
+<p class="font-body-sm text-on-surface-variant">Qtd: 1</p>
+<p class="font-label-md text-primary mt-1">R$ 289,00</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-surface-variant flex-shrink-0 bg-cover bg-center" data-alt="A luxurious Japanese eye cream in a small pearlescent tube, surrounded by delicate cherry blossom petals. The scene is shot with a shallow depth of field, emphasizing the high-quality packaging and soft pink aesthetic of the skincare line. The background is a clean, bright studio setting with soft shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEeOO1nU65qAV5ymV8tMnicUSi9pEHqJSQdWAOYzNNTMCMH30onTIYQCJzZMr_H7zHYAkBkm9jyqf8yvksL5OpiysfKrEzFDQ54eIgZMymcUwglbar3BW2CwdZ_lKO68yfGjZyFqyCztp0tJQWGwGTH6A4bfu6wwd5IhTPxCr5OxZwHwoOSR0iY90fmCxmuNZft5ddVZH77uZRmUbYDFfy28-PnXvaUnG84gsc0lRd7CIEjm9p6Mv8rU6Bwqa_4AAGjYkSSnVUBhMK')"></div>
+<div class="flex-1">
+<p class="font-body-sm font-bold text-on-surface">Creme de Olhos Sakura Glow</p>
+<p class="font-body-sm text-on-surface-variant">Qtd: 1</p>
+<p class="font-label-md text-primary mt-1">R$ 169,90</p>
+</div>
+</div>
+<div class="pt-2 space-y-2 border-t border-outline-variant">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span>R$ 458,90</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Frete</span>
+<span class="text-tertiary font-bold">Grátis</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Identificação (Visual apenas para Checkout) -->
+<section class="bg-surface p-4 rounded-xl shadow-sm border border-outline-variant">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+<h2 class="font-headline-sm text-headline-sm">Identificação</h2>
+</div>
+<button class="text-primary font-label-md">Alterar</button>
+</div>
+<div class="text-on-surface-variant font-body-sm">
+<p class="font-bold text-on-surface">Maria Silva Santos</p>
+<p>maria.silva@email.com</p>
+<p>(11) 98765-4321</p>
+</div>
+</section>
+<!-- Entrega -->
+<section class="bg-surface p-4 rounded-xl shadow-sm border border-outline-variant">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<h2 class="font-headline-sm text-headline-sm">Entrega</h2>
+</div>
+<button class="text-primary font-label-md">Alterar</button>
+</div>
+<div class="text-on-surface-variant font-body-sm">
+<p class="font-bold text-on-surface">Casa</p>
+<p>Avenida Paulista, 1000 - Apto 42</p>
+<p>Bela Vista - São Paulo / SP</p>
+<p>CEP: 01310-100</p>
+</div>
+</section>
+<!-- Frete Selecionado -->
+<section class="bg-surface p-4 rounded-xl shadow-sm border border-outline-variant border-tertiary bg-tertiary-fixed-dim/10">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">task_alt</span>
+<div>
+<p class="font-body-md font-bold text-tertiary">Expressa Internacional</p>
+<p class="text-body-sm text-on-surface-variant">Entrega em até 12 dias úteis</p>
+</div>
+</div>
+<span class="font-label-md text-tertiary font-bold">Grátis</span>
+</div>
+</section>
+<!-- Pagamento -->
+<section class="bg-surface p-4 rounded-xl shadow-sm border border-outline-variant space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">payments</span>
+<h2 class="font-headline-sm text-headline-sm">Pagamento</h2>
+</div>
+<!-- Abas de Pagamento -->
+<div class="flex gap-2 p-1 bg-surface-container rounded-lg">
+<button class="flex-1 py-2 rounded-md bg-white shadow-sm flex items-center justify-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-[20px]">credit_card</span>
+<span class="text-xs uppercase tracking-tight">Cartão</span>
+</button>
+<button class="flex-1 py-2 rounded-md flex items-center justify-center gap-2 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[20px]">qr_code_2</span>
+<span class="text-xs uppercase tracking-tight">PIX</span>
+</button>
+<button class="flex-1 py-2 rounded-md flex items-center justify-center gap-2 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[20px]">barcode_scanner</span>
+<span class="text-xs uppercase tracking-tight">Boleto</span>
+</button>
+</div>
+<!-- Formulário Cartão Simulado -->
+<div class="space-y-4 pt-2">
+<div class="relative">
+<label class="absolute -top-2 left-3 bg-surface px-1 text-[10px] text-on-surface-variant font-bold uppercase">Número do Cartão</label>
+<input class="w-full border border-outline p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="0000 0000 0000 0000" type="text"/>
+</div>
+<div class="relative">
+<label class="absolute -top-2 left-3 bg-surface px-1 text-[10px] text-on-surface-variant font-bold uppercase">Nome no Cartão</label>
+<input class="w-full border border-outline p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Como impresso no cartão" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative">
+<label class="absolute -top-2 left-3 bg-surface px-1 text-[10px] text-on-surface-variant font-bold uppercase">Validade</label>
+<input class="w-full border border-outline p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="MM/AA" type="text"/>
+</div>
+<div class="relative">
+<label class="absolute -top-2 left-3 bg-surface px-1 text-[10px] text-on-surface-variant font-bold uppercase">CVV</label>
+<input class="w-full border border-outline p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="123" type="text"/>
+</div>
+</div>
+<div class="relative">
+<label class="absolute -top-2 left-3 bg-surface px-1 text-[10px] text-on-surface-variant font-bold uppercase">Parcelas</label>
+<select class="w-full border border-outline p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none bg-white">
+<option>1x de R$ 458,90 (Sem juros)</option>
+<option>2x de R$ 229,45 (Sem juros)</option>
+<option>3x de R$ 152,97 (Sem juros)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Selos de Segurança -->
+<div class="flex flex-col items-center gap-4 py-4 text-center">
+<p class="text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock</span>
+                    Ambiente 100% Seguro e Criptografado
+                </p>
+<div class="flex justify-center gap-6 grayscale opacity-60">
+<span class="material-symbols-outlined text-4xl">shield_person</span>
+<span class="material-symbols-outlined text-4xl">verified_user</span>
+<span class="material-symbols-outlined text-4xl">gpp_good</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Fixo / CTA -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface shadow-[0_-4px_10px_rgba(0,0,0,0.03)] border-t border-outline-variant p-4 z-50">
+<div class="flex justify-between items-center mb-3 px-2">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Total a pagar</p>
+<p class="font-price-display text-primary text-2xl">R$ 458,90</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-tertiary uppercase font-bold">Ganhe 458 pontos</p>
+<p class="text-[10px] text-on-surface-variant">no Programa de Ritual</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-button-text text-button-text active:scale-95 transition-transform shadow-lg shadow-primary-container">
+            Finalizar Pedido
+        </button>
+</footer>
+<script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('accordion-icon');
+            
+            if (content.classList.contains('accordion-collapsed')) {
+                content.classList.remove('accordion-collapsed');
+                content.classList.add('accordion-expanded');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.remove('accordion-expanded');
+                content.classList.add('accordion-collapsed');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Auto-expand accordion on load for visibility
+        window.onload = () => {
+            setTimeout(() => {
+                // toggleAccordion('order-summary');
+            }, 500);
+        };
+    </script>
+</body></html>

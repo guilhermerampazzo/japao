@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glow Rituals - Carrinho</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#00530a",
+                "secondary": "#6a5a64",
+                "error": "#ba1a1a",
+                "on-surface-variant": "#5a3f47",
+                "on-error-container": "#93000a",
+                "inverse-on-surface": "#ffecf0",
+                "tertiary-container": "#008818",
+                "tertiary": "#006b11",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#fff0f2",
+                "secondary-fixed-dim": "#d6c1cc",
+                "surface-tint": "#b90063",
+                "on-secondary-fixed-variant": "#52424c",
+                "surface-bright": "#fff8f8",
+                "secondary-container": "#f3dce8",
+                "primary": "#b50061",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#e10b7a",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed": "#002202",
+                "on-background": "#27171c",
+                "on-primary": "#ffffff",
+                "inverse-primary": "#ffb1c8",
+                "on-primary-fixed-variant": "#8e004a",
+                "primary-fixed-dim": "#ffb1c8",
+                "on-primary-fixed": "#3e001d",
+                "outline": "#8e6f77",
+                "tertiary-fixed-dim": "#6bdf63",
+                "background": "#fff8f8",
+                "surface-container": "#ffe8ed",
+                "secondary-fixed": "#f3dce8",
+                "on-error": "#ffffff",
+                "on-tertiary-container": "#f8fff0",
+                "on-surface": "#27171c",
+                "surface-container-highest": "#f9dbe2",
+                "surface": "#fff8f8",
+                "surface-container-high": "#fee1e7",
+                "on-secondary-container": "#71606a",
+                "on-tertiary": "#ffffff",
+                "surface-dim": "#f0d3d9",
+                "on-primary-container": "#fffbff",
+                "tertiary-fixed": "#87fc7c",
+                "surface-variant": "#f9dbe2",
+                "inverse-surface": "#3e2b31",
+                "outline-variant": "#e2bdc6",
+                "on-secondary-fixed": "#241820",
+                "primary-fixed": "#ffd9e2"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "lg": "40px",
+                "xs": "8px",
+                "container-max": "1200px",
+                "md": "24px",
+                "base": "4px",
+                "xl": "64px",
+                "margin-mobile": "16px",
+                "sm": "16px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "price-display": ["Inter"],
+                "body-md": ["Inter"],
+                "button-text": ["Inter"],
+                "headline-md": ["Poppins"],
+                "display-lg-mobile": ["Poppins"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Poppins"],
+                "headline-sm": ["Poppins"],
+                "body-sm": ["Inter"],
+                "label-md": ["Inter"]
+            },
+            "fontSize": {
+                "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .drawer-open {
+            transform: translateX(0);
+        }
+        
+        .drawer-closed {
+            transform: translateX(100%);
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Custom subtle glow for inputs */
+        .input-focus-glow:focus {
+            box-shadow: 0 0 0 2px rgba(181, 0, 97, 0.2);
+            border-color: #b50061;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden">
+<!-- Header (Shared Component Background Context) -->
+<header class="fixed top-0 w-full z-40 bg-surface-bright shadow-sm">
+<div class="flex justify-between items-center px-sm md:px-lg h-xl max-w-container-max mx-auto">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Glow Rituals</h1>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Novidades</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Rosto</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Corpo</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary scale-95 active:scale-90 transition-transform">favorite</button>
+<button class="material-symbols-outlined text-primary scale-95 active:scale-90 transition-transform relative" id="openCart">
+                    shopping_bag
+                    <span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Context (Mockup to show overlay effect) -->
+<main class="pt-xl px-sm md:px-lg max-w-container-max mx-auto mt-lg">
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="md:col-span-2 space-y-md">
+<div class="rounded-xl overflow-hidden h-[400px] bg-surface-variant relative group">
+<img class="w-full h-full object-cover" data-alt="A luxurious, high-end skincare hero image featuring a collection of elegant frosted glass bottles on a marble surface. The lighting is soft and airy with a bright light-mode aesthetic, emphasizing clean textures and soft pink floral accents in the background. The scene is sophisticated and calm, capturing the premium feminine identity of the Glow Rituals brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYaxhmyfa4QM9XdBr4NFm-TtLn0UyceR4tYaBC_E0iRQVt7UxxPGvyFo_RlPqFccqm9GQVPZDfJ8Eg9BA6jIrRUFIpGb-H-XrrFLcdxwRRRtTWSmNt98XcOV6PxW_p1eQKGxLkqeY0VzadCpJvT1tGrIWx2_tuG7BLj5mjBEnEW4IRJquxvQP25XRBeUo1YZMuoZXKYKxpRdxQHABCh9Lodrb7XCNGFAD3CFybmURXnOyC2GU2lBBWzabGRBgjMsl_n5xNZCsN1MGW"/>
+<div class="absolute inset-0 bg-black/10 flex items-center px-lg">
+<div class="max-w-md">
+<h2 class="font-display-lg text-display-lg text-on-primary-container mb-xs">Ritual de Outono</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container opacity-90 mb-md">Hidratação profunda para peles delicadas com essências de camélia japonesa.</p>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-xl font-button-text hover:bg-primary-container transition-all">Explorar Coleção</button>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-md">
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant">
+<span class="text-primary font-label-md uppercase tracking-wider">Destaque</span>
+<h3 class="font-headline-sm text-headline-sm mt-xs">Kit Glow Starter</h3>
+<p class="text-body-sm text-on-surface-variant mt-xs">Tudo o que sua pele precisa para um brilho natural imediato.</p>
+<p class="font-price-display text-price-display text-primary mt-md">R$ 289,90</p>
+</div>
+<div class="bg-secondary-container p-md rounded-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-secondary-fixed">Frete Grátis</h3>
+<p class="text-body-sm text-on-secondary-fixed-variant">Em compras acima de R$ 199. Aproveite o melhor do Japão na sua casa.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Overlay -->
+<div class="fixed inset-0 bg-black/60 z-50 transition-opacity duration-300 opacity-0 pointer-events-none" id="cartOverlay"></div>
+<!-- Shopping Cart Drawer -->
+<aside class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-surface-bright z-[60] shadow-2xl transition-transform duration-300 ease-in-out drawer-closed flex flex-col" id="cartDrawer">
+<!-- Header -->
+<div class="flex items-center justify-between px-md py-sm border-b border-surface-container-highest">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Meu carrinho (3)</h2>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-xs rounded-full hover:bg-surface-container" id="closeCart">close</button>
+</div>
+<!-- Scrollable Item List -->
+<div class="flex-1 overflow-y-auto p-md space-y-md scrollbar-hide">
+<!-- Item 1 -->
+<div class="flex gap-sm group">
+<div class="w-20 h-20 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up studio photography of a premium white ceramic jar of face cream. The lighting is soft and flattering, highlighting the smooth texture of the glass. The background is a very light pinkish-white, creating a clean and feminine atmosphere consistent with a modern skincare brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAigxrFPpGaQSe-OlotqAJ6f65mHvEOFykS1slfCQfukvrPk8EM6WHtUjp6yeO6Xmi7Pm0OWCDQFmhobycCfly82BcV-l43FCJ0JxYK1Vi6-DPclVH6n8VSXD3LY-KMzPFckxkXSFM0DoDUc8Y4S_O8cFO53XeH97TVztDnD5JXvI1ssddUR6kwyJqnVTq5NeptE5pxpHckz0ukQKWrkb2Q4EoKBeKcSic6x3yXwOfilBPIL0b5FUajbXQ9h7pXM1MtmtWJ6HU3f5nY"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Creme Hidratante Hydra-Silk</h4>
+<p class="text-body-sm text-on-surface-variant italic">Variação: 50ml</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center border border-outline-variant rounded-lg h-8">
+<button class="px-xs hover:text-primary transition-colors">-</button>
+<span class="px-sm text-body-sm">1</span>
+<button class="px-xs hover:text-primary transition-colors">+</button>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-price-display text-price-display text-primary">R$ 145,00</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors text-[20px]">delete</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-sm group">
+<div class="w-20 h-20 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A minimalist glass dropper bottle with a clear golden serum inside. It sits on a soft pink velvet surface, illuminated by natural, warm side lighting that creates soft shadows. The aesthetic is luxurious and approachable, focusing on the high-quality ingredients and feminine ritual of skincare." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNFJBDaUSj4SggLlS6vaLffPUSwahuf1dj0NQGJBjrqoZnO5iaZ0yxzTRxqEopD0hyUgTezFbmkW-96P2WgRfqww27xdukuubIQuZnZr6FM9SP-gtnw9h7MKM4TJQ5H5LCsnh62PsaTl0IP1ojh19q9JDeWYV-T2DTxbDrd1fQjQ7fkrC9oBdQVxVMG2tV4vWSbgMslWw9qt6GWpZTpNABQWNIN2RT_I7zhHaEZaxQmHgLHjia51tidV-EHOB6UxRQ_XOn5X9t7R44"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Sérum Vitamina C Pura</h4>
+<p class="text-body-sm text-on-surface-variant italic">Variação: Padrão</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center border border-outline-variant rounded-lg h-8">
+<button class="px-xs hover:text-primary transition-colors">-</button>
+<span class="px-sm text-body-sm">1</span>
+<button class="px-xs hover:text-primary transition-colors">+</button>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-price-display text-price-display text-primary">R$ 189,90</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors text-[20px]">delete</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex gap-sm group">
+<div class="w-20 h-20 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A tall, slender pink bottle of facial toner standing on a clean, white reflective surface. Soft water droplets are visible on the bottle, suggesting freshness and purity. The lighting is high-key and bright, evoking a sense of morning ritual and clean energy in a premium skincare context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcx68ekjt538bpiIWSWuWyFAngLifTwnDUa8dLQ27RCV2NSbPE3pMjBKJ4lamiGWxJZzPdS9-43ePzAI0id9gDQ7Mf1a_Ji_Mt5pEQ6NflDZGzy2-0BeriZc7hFYaBFwA_G9ir_EFa4_Nt7v3aKyiH0qTQBnapbZqEj70CIPEyplg-7yY3uJmN9BRtw0aTrKoiuAwJT840phF6p1z6_P9jpfiVVRVgJLgI8xzEY1fgsbag5MKS8Fkz6pM9UAyxlhGKxIjS5N31KYPc"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Loção Equilibrante Rose</h4>
+<p class="text-body-sm text-on-surface-variant italic">Variação: 150ml</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center border border-outline-variant rounded-lg h-8">
+<button class="px-xs hover:text-primary transition-colors">-</button>
+<span class="px-sm text-body-sm">1</span>
+<button class="px-xs hover:text-primary transition-colors">+</button>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-price-display text-price-display text-primary">R$ 98,00</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors text-[20px]">delete</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Area -->
+<div class="bg-surface-container-lowest p-md border-t border-surface-container-highest space-y-md">
+<!-- Coupon -->
+<div class="flex gap-xs">
+<input class="flex-1 bg-surface-bright border border-outline-variant rounded-lg px-sm py-2 text-body-sm outline-none input-focus-glow transition-all" placeholder="Cupom de desconto" type="text"/>
+<button class="bg-secondary-container text-primary font-button-text px-md py-2 rounded-lg hover:bg-surface-container-highest transition-colors">Aplicar</button>
+</div>
+<!-- Summary -->
+<div class="space-y-xs">
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Subtotal</span>
+<span>R$ 432,90</span>
+</div>
+<div class="flex justify-between text-body-sm text-tertiary">
+<span>Desconto (GLOW10)</span>
+<span>- R$ 43,29</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Frete</span>
+<span class="font-semibold text-tertiary">Grátis</span>
+</div>
+<div class="flex justify-between pt-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+<span class="font-headline-sm text-headline-sm text-primary">R$ 389,61</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="space-y-sm text-center">
+<button class="w-full bg-primary text-on-primary py-sm rounded-xl font-button-text font-bold shadow-md hover:brightness-110 active:scale-[0.98] transition-all">
+                    Finalizar compra
+                </button>
+<button class="text-primary font-label-md hover:underline transition-all" id="continueShopping">
+                    Continuar comprando
+                </button>
+</div>
+</div>
+</aside>
+<script>
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const openCartBtn = document.getElementById('openCart');
+        const closeCartBtn = document.getElementById('closeCart');
+        const continueShoppingBtn = document.getElementById('continueShopping');
+
+        function openDrawer() {
+            cartDrawer.classList.remove('drawer-closed');
+            cartDrawer.classList.add('drawer-open');
+            cartOverlay.classList.remove('pointer-events-none', 'opacity-0');
+            cartOverlay.classList.add('opacity-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            cartDrawer.classList.add('drawer-closed');
+            cartDrawer.classList.remove('drawer-open');
+            cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+            cartOverlay.classList.remove('opacity-100');
+            document.body.style.overflow = 'auto';
+        }
+
+        openCartBtn.addEventListener('click', openDrawer);
+        closeCartBtn.addEventListener('click', closeDrawer);
+        continueShoppingBtn.addEventListener('click', closeDrawer);
+        cartOverlay.addEventListener('click', closeDrawer);
+
+        // Auto-open for demonstration
+        setTimeout(openDrawer, 1000);
+    </script>
+</body></html>

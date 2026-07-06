@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Japão Nas Mãos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ffb1c8",
+                    "on-secondary-container": "#71606a",
+                    "on-tertiary-fixed": "#002202",
+                    "tertiary-fixed-dim": "#6bdf63",
+                    "surface-container-high": "#fee1e7",
+                    "tertiary-fixed": "#87fc7c",
+                    "surface-container": "#ffe8ed",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#f3dce8",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#3e2b31",
+                    "on-surface": "#27171c",
+                    "on-secondary-fixed": "#241820",
+                    "on-surface-variant": "#5a3f47",
+                    "primary-container": "#e10b7a",
+                    "surface-bright": "#fff8f8",
+                    "on-primary-fixed-variant": "#8e004a",
+                    "outline": "#8e6f77",
+                    "on-tertiary-fixed-variant": "#00530a",
+                    "tertiary-container": "#008818",
+                    "background": "#fff8f8",
+                    "surface-variant": "#f9dbe2",
+                    "surface-tint": "#b90063",
+                    "on-secondary-fixed-variant": "#52424c",
+                    "primary-fixed": "#ffd9e2",
+                    "error": "#ba1a1a",
+                    "surface": "#fff8f8",
+                    "outline-variant": "#e2bdc6",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#f3dce8",
+                    "on-tertiary-container": "#f8fff0",
+                    "secondary-fixed-dim": "#d6c1cc",
+                    "on-primary-fixed": "#3e001d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#f9dbe2",
+                    "secondary": "#6a5a64",
+                    "on-primary-container": "#fffbff",
+                    "tertiary": "#006b11",
+                    "surface-container-low": "#fff0f2",
+                    "inverse-on-surface": "#ffecf0",
+                    "on-background": "#27171c",
+                    "inverse-primary": "#ffb1c8",
+                    "surface-dim": "#f0d3d9",
+                    "primary": "#b50061"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "gutter": "24px",
+                    "md": "24px",
+                    "xl": "64px",
+                    "sm": "16px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "container-max": "1200px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "price-display": ["Inter"],
+                    "headline-md": ["Poppins"],
+                    "headline-sm": ["Poppins"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "button-text": ["Inter"],
+                    "display-lg-mobile": ["Poppins"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .step-active { color: var(--tw-color-primary); font-weight: 700; border-bottom: 2px solid #b50061; }
+        .tab-active { background-color: #FBE4F0; color: #b50061; border-color: #b50061; }
+        input:focus { outline: none; border-color: #b50061; ring: 2px; ring-color: rgba(181, 0, 97, 0.2); }
+        .premium-shadow { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-surface-container-low font-body-md text-on-surface">
+<!-- TopAppBar (Simplified for Checkout) -->
+<header class="bg-surface shadow-sm sticky top-0 z-50">
+<div class="max-w-container-max mx-auto px-margin-mobile flex flex-col items-center py-md">
+<h1 class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary mb-sm">Japão Nas Mãos</h1>
+<nav class="flex items-center gap-md sm:gap-xl">
+<!-- Identificação (Active) -->
+<div class="flex items-center gap-xs text-primary font-bold border-b-2 border-primary pb-1">
+<span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-[12px]">1</span>
+<span class="font-label-md text-label-md">Identificação</span>
+</div>
+<!-- Entrega -->
+<div class="flex items-center gap-xs text-on-secondary-container opacity-60">
+<span class="w-6 h-6 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center text-[12px]">2</span>
+<span class="font-label-md text-label-md">Entrega</span>
+</div>
+<!-- Pagamento -->
+<div class="flex items-center gap-xs text-on-secondary-container opacity-60">
+<span class="w-6 h-6 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center text-[12px]">3</span>
+<span class="font-label-md text-label-md">Pagamento</span>
+</div>
+</nav>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile py-xl grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Checkout Forms (60%) -->
+<div class="lg:col-span-7 space-y-md">
+<!-- Section 1: Identificação -->
+<section class="bg-white rounded-xl premium-shadow p-md lg:p-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">person</span>
+<h2 class="font-headline-sm text-headline-sm">Identificação</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">E-mail</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm focus:border-primary transition-all" placeholder="seu@email.com" type="email"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Nome Completo</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="Como no documento" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">CPF</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="000.000.000-00" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Telefone</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="(00) 00000-0000" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Section 2: Endereço de Entrega -->
+<section class="bg-white rounded-xl premium-shadow p-md lg:p-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<h2 class="font-headline-sm text-headline-sm">Endereço de Entrega</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-6 gap-sm">
+<div class="md:col-span-3 flex flex-col gap-xs relative">
+<label class="font-label-md text-on-surface-variant">CEP</label>
+<div class="flex gap-2">
+<input class="flex-grow border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="00000-000" type="text"/>
+<button class="bg-secondary-container text-primary font-button-text px-md py-sm rounded-lg hover:bg-primary-fixed transition-colors">Buscar</button>
+</div>
+</div>
+<div class="md:col-span-6 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Rua / Logradouro</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Número</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" type="text"/>
+</div>
+<div class="md:col-span-4 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Complemento</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="Apt, bloco, etc" type="text"/>
+</div>
+<div class="md:col-span-3 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Bairro</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Cidade</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" type="text"/>
+</div>
+<div class="md:col-span-1 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Estado</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="UF" type="text"/>
+</div>
+</div>
+</section>
+<!-- Section 3: Opções de Frete -->
+<section class="bg-white rounded-xl premium-shadow p-md lg:p-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">package_2</span>
+<h2 class="font-headline-sm text-headline-sm">Opções de Frete</h2>
+</div>
+<div class="space-y-sm">
+<label class="flex items-center justify-between p-sm border border-primary bg-primary-fixed/20 rounded-lg cursor-pointer transition-all hover:bg-primary-fixed/30 group">
+<div class="flex items-center gap-sm">
+<input checked="" class="text-primary focus:ring-primary h-5 w-5" name="frete" type="radio"/>
+<div>
+<p class="font-label-md text-on-surface">Transportadora Premium</p>
+<p class="font-body-sm text-on-surface-variant">Entrega em até 3 dias úteis</p>
+</div>
+</div>
+<span class="font-price-display text-primary">R$ 25,90</span>
+</label>
+<label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer transition-all hover:border-primary group">
+<div class="flex items-center gap-sm">
+<input class="text-primary focus:ring-primary h-5 w-5" name="frete" type="radio"/>
+<div>
+<p class="font-label-md text-on-surface">Correios (PAC)</p>
+<p class="font-body-sm text-on-surface-variant">Entrega em até 8 dias úteis</p>
+</div>
+</div>
+<span class="font-price-display text-on-surface-variant">R$ 14,50</span>
+</label>
+</div>
+</section>
+<!-- Section 4: Pagamento -->
+<section class="bg-white rounded-xl premium-shadow p-md lg:p-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h2 class="font-headline-sm text-headline-sm">Pagamento</h2>
+</div>
+<!-- Payment Tabs -->
+<div class="flex border-b border-outline-variant mb-md">
+<button class="flex-1 py-sm font-label-md border-b-2 border-transparent tab-active flex items-center justify-center gap-xs" id="tab-pix">
+<span class="material-symbols-outlined text-sm">qr_code</span> Pix
+                    </button>
+<button class="flex-1 py-sm font-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center justify-center gap-xs" id="tab-cartao">
+<span class="material-symbols-outlined text-sm">credit_card</span> Cartão
+                    </button>
+<button class="flex-1 py-sm font-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary flex items-center justify-center gap-xs" id="tab-boleto">
+<span class="material-symbols-outlined text-sm">barcode_scanner</span> Boleto
+                    </button>
+</div>
+<!-- Pix Content -->
+<div class="space-y-sm text-center py-md bg-surface-container-low rounded-xl border border-dashed border-primary/40" id="content-pix">
+<div class="bg-primary text-white inline-block px-md py-1 rounded-full text-xs font-bold mb-xs">5% DE DESCONTO</div>
+<p class="font-body-sm text-on-surface-variant px-xl">O código QR será gerado após finalizar o pedido. O pagamento é aprovado instantaneamente.</p>
+</div>
+<!-- Cartão Content (Hidden by default in this mockup via JS) -->
+<div class="hidden space-y-sm" id="content-cartao">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Número do Cartão</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="0000 0000 0000 0000" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Nome Impresso no Cartão</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="JOSÉ SILVA" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Validade</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="MM/AA" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">CVV</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-sm" placeholder="123" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Parcelamento</label>
+<select class="border border-outline-variant rounded-lg p-sm font-body-sm bg-white">
+<option>1x de R$ 489,40 sem juros</option>
+<option>2x de R$ 244,70 sem juros</option>
+<option>3x de R$ 163,13 sem juros</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary (40%) -->
+<div class="lg:col-span-5">
+<aside class="sticky top-[140px] space-y-md">
+<!-- Order Summary Card -->
+<div class="bg-white rounded-xl premium-shadow border border-outline-variant/30 overflow-hidden">
+<div class="p-md border-b border-outline-variant/20 bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Resumo do Pedido</h3>
+</div>
+<div class="p-md space-y-md">
+<!-- Items List -->
+<div class="space-y-sm">
+<div class="flex gap-sm items-center">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant/20" data-alt="A close-up, high-quality studio photograph of a premium Japanese face serum bottle in a minimalist pink and white aesthetic. The lighting is soft and diffused, highlighting the elegant glass texture and magenta branding. The background is a clean, off-white surface with subtle shadows, conveying a sense of luxury skincare ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyyCZ2hPS4MlQK1VK79OJ84c6oDsNYTIcYA9UrT4qOmm20b1q4y4Fv7DAwFchi4z3Phwb00MdV_dLQkISmw6IXnygcxCWe1aecm1dj0cfyvtU2N4NZAAlZUU0pw6B0VJ-FZvkLutNkd6oI2gfmfyj1mqolAZY34JdMY1Dj8nVU11PvxCfX2bDNFt8DA5KoocCzBtW5a3B18D7LKqvDy3qAIArkc5vAd8OQOLD0SKLnABQyYWd6Hu3IxP5E1P7eTkSHGNxeTzvQoCpP"/>
+<div class="flex-grow">
+<h4 class="font-label-md text-on-surface line-clamp-1">Sérum Iluminador Sakura 30ml</h4>
+<p class="font-body-sm text-on-surface-variant">Qtd: 1</p>
+</div>
+<span class="font-price-display text-on-surface text-sm">R$ 249,90</span>
+</div>
+<div class="flex gap-sm items-center">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant/20" data-alt="A professional product shot of a luxury Japanese exfoliating mask in a sleek pink jar. The lighting is bright and modern, emphasizing the high-end quality and approachable skincare vibe. Soft rounded edges and pristine presentation against a neutral, high-key backdrop create a fresh and trustworthy feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoP1tiqBpsq4k9VLTAsDb-nzot1a7ilUAHip8c_DOLuq2I416rbTk7nJr8Kgt4m_n6vEhi3tXf77vcmhZQgBQk2koIfdxSqsSUTRDkmc4_UjfImvZ7olxg0662WYTGZEAhIdCFZXM_9V6yCrRx2iN7KszqGe2xR5zuky2Icbx6pq4OZMZ-SMyTBIgB7e-ondUiCCqhCCg3yW0MB88QE4XLopAvh6_go51pTKkPpKR2r6UhGRaQhk9W51fRC-oRofd88ITqtuYU8HQf"/>
+<div class="flex-grow">
+<h4 class="font-label-md text-on-surface line-clamp-1">Máscara Facial Detox Arroz</h4>
+<p class="font-body-sm text-on-surface-variant">Qtd: 2</p>
+</div>
+<span class="font-price-display text-on-surface text-sm">R$ 239,50</span>
+</div>
+</div>
+<!-- Coupon -->
+<div class="pt-sm border-t border-outline-variant/20">
+<div class="flex gap-2">
+<input class="flex-grow border border-outline-variant rounded-lg p-sm font-body-sm text-xs" placeholder="Cupom de desconto" type="text"/>
+<button class="text-primary font-button-text text-sm px-sm hover:underline">Aplicar</button>
+</div>
+</div>
+<!-- Financials -->
+<div class="space-y-xs pt-sm">
+<div class="flex justify-between text-on-surface-variant font-body-sm">
+<span>Subtotal</span>
+<span>R$ 489,40</span>
+</div>
+<div class="flex justify-between text-tertiary font-body-sm">
+<span>Desconto (Pix 5%)</span>
+<span>- R$ 24,47</span>
+</div>
+<div class="flex justify-between text-on-surface-variant font-body-sm">
+<span>Frete</span>
+<span>R$ 25,90</span>
+</div>
+<div class="flex justify-between items-center pt-sm mt-sm border-t-2 border-primary/10">
+<span class="font-headline-sm text-on-surface">Total</span>
+<span class="font-display-lg-mobile text-primary">R$ 490,83</span>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-white font-button-text py-md rounded-xl hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-sm shadow-lg shadow-primary/20">
+                            Finalizar pedido
+                            <span class="material-symbols-outlined">lock</span>
+</button>
+</div>
+</div>
+<!-- Trust Signals -->
+<div class="bg-surface-container rounded-xl p-md space-y-sm border border-outline-variant/10">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-lg">verified_user</span>
+<p class="text-xs font-label-md text-on-surface">Compra 100% Protegida</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-lg">shield_lock</span>
+<p class="text-xs font-label-md text-on-surface">Certificado SSL Seguro</p>
+</div>
+<div class="pt-xs flex gap-xs flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all">
+<img alt="Visa" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-ZaKFDTuTo8G_4ZWwuNHH8VZY-qV73Nh-1brcCdqKNodgTilKrK1cGEs3bu9btQQY8wx5fIF-mcNdX99eB_W4-sFYx6EBgxd5DO492TvcjYW7gVhk9vT35Zbi1RbUTCDsSdlRJLAk70TdtvIdVvMMw7CZs6WJj3RstR7bb43DIDojOzIZQo9URsafHA975ccoEDQKtumMcLfLe4qXMw1vLM-MuuRq2I7KflzqP2ftiNyOe-pE5cKRIo125O0iqxK8H5imMgNb6PTo"/>
+<img alt="Mastercard" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXDr5OXgJ0BTGNTRots-RfMoxbLDsI1UrWpZAVzt0WwmGZfKlGKdaYvgjsAjbw4Rl6bpz5Vpq1tkhRKdQNGt9zzWNWddUHFXdq29I63FfzjsaI8o9HYf2nr3ZJC5Ve0V8_x_896nKd3-u42z1kdHy3c-TG0MbptjtIeYc5X9Rl-4dE5dBLVOjlja47i6wQugLjoXpNnMVr-gDrE758_ikIuxZyMu8Enz3Wa5_or8huvHXKnkFDCCNfPfohpTjcrX-JlXLiP-IiLCx8"/>
+<img alt="Paypal" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_wEEM-ShDrNqvvSvshRdjKfRR1aDHk50Wh5v70FD6AZMi5eJmX85Pv-OBtMP8pAFBBezGtwY_WBdvPxcnxrZ1S2ITDnIfdpV8buh4PsCh8tgJLIXtoMOo7fl1BM-oJWllMpopafugZX_knv7FSx_OiDR_2ZQPc3jkddhWlQj70FpQ5hPyS8EOmpiG09RhYy_9paZwzrfUYSTd75UFM1k49kdCpac7dOSw11IkT5EMTFyI2ac_p2-NONyli-o2CBPur-C92lxVJu-e"/>
+<img alt="Pix" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB75moyrbzukjtLUNkTSUufwXJrgPN-QYqdXCm5LNDsdzA3d_iT9xg8KQAzRDVR1UDxWBHuHDgBtoAsqFNgAYbQc6bC-oKNn9WPMGW4VT0YZEabcCgSjHuzZjK7a1uawJje21mAkOeYg3R86mubCdOR5lCSvOi8U3p3gEo2w--FDilUdjiUx-lGKbXPPxIIW_2rwCghc43vS-2fe573k2gBUbQ3lR4-lKJRiSgNmYb4X5winiZzKHhpTmeE_-0HFozAUyu2tcTDy93l"/>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Minimalist Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-margin-mobile py-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="font-label-md text-secondary opacity-80">© 2024 Japão Nas Mãos. Todos os direitos reservados.</p>
+<div class="flex gap-md">
+<a class="font-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Termos de Uso</a>
+<a class="font-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Política de Privacidade</a>
+<a class="font-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Ajuda</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Tab Logic for Payment Methods
+        const tabPix = document.getElementById('tab-pix');
+        const tabCartao = document.getElementById('tab-cartao');
+        const tabBoleto = document.getElementById('tab-boleto');
+        
+        const contentPix = document.getElementById('content-pix');
+        const contentCartao = document.getElementById('content-cartao');
+
+        const tabs = [tabPix, tabCartao, tabBoleto];
+        
+        function resetTabs() {
+            tabs.forEach(tab => {
+                tab.classList.remove('tab-active');
+                tab.classList.add('text-on-surface-variant');
+            });
+            contentPix.classList.add('hidden');
+            contentCartao.classList.add('hidden');
+        }
+
+        tabPix.addEventListener('click', () => {
+            resetTabs();
+            tabPix.classList.add('tab-active');
+            tabPix.classList.remove('text-on-surface-variant');
+            contentPix.classList.remove('hidden');
+        });
+
+        tabCartao.addEventListener('click', () => {
+            resetTabs();
+            tabCartao.classList.add('tab-active');
+            tabCartao.classList.remove('text-on-surface-variant');
+            contentCartao.classList.remove('hidden');
+        });
+
+        tabBoleto.addEventListener('click', () => {
+            resetTabs();
+            tabBoleto.classList.add('tab-active');
+            tabBoleto.classList.remove('text-on-surface-variant');
+            // Simplified: showing Pix content for Boleto placeholder logic
+            contentPix.innerHTML = '<p class="font-body-sm text-on-surface-variant py-md">Boleto bancário gerado após a confirmação. Vencimento em 3 dias.</p>';
+            contentPix.classList.remove('hidden');
+        });
+
+        // Micro-interactions
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label')?.classList.remove</script></body></html>

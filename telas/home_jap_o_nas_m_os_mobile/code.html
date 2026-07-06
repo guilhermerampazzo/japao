@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Japão Nas Mãos | Skincare Premium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#e2bdc6",
+                        "tertiary-container": "#008818",
+                        "surface-tint": "#b90063",
+                        "surface-container-high": "#fee1e7",
+                        "surface-container": "#ffe8ed",
+                        "tertiary-fixed-dim": "#6bdf63",
+                        "primary-container": "#e10b7a",
+                        "inverse-surface": "#3e2b31",
+                        "surface-bright": "#fff8f8",
+                        "surface": "#fff8f8",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#f8fff0",
+                        "on-secondary-fixed-variant": "#52424c",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#f9dbe2",
+                        "secondary": "#6a5a64",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#d6c1cc",
+                        "error": "#ba1a1a",
+                        "tertiary": "#006b11",
+                        "background": "#fff8f8",
+                        "primary-fixed": "#ffd9e2",
+                        "on-tertiary-fixed": "#002202",
+                        "on-surface": "#27171c",
+                        "primary": "#b50061",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed-variant": "#00530a",
+                        "on-primary-fixed": "#3e001d",
+                        "surface-dim": "#f0d3d9",
+                        "primary-fixed-dim": "#ffb1c8",
+                        "surface-container-highest": "#f9dbe2",
+                        "tertiary-fixed": "#87fc7c",
+                        "secondary-container": "#f3dce8",
+                        "on-secondary-container": "#71606a",
+                        "surface-container-low": "#fff0f2",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#5a3f47",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#8e004a",
+                        "inverse-on-surface": "#ffecf0",
+                        "outline": "#8e6f77",
+                        "on-background": "#27171c",
+                        "secondary-fixed": "#f3dce8",
+                        "on-secondary-fixed": "#241820",
+                        "inverse-primary": "#ffb1c8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xs": "8px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "xl": "64px",
+                        "sm": "16px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "button-text": ["Inter"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "body-sm": ["Inter"],
+                        "price-display": ["Inter"],
+                        "display-lg": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .category-circle {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category-circle:active {
+            transform: scale(0.95);
+        }
+        .product-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+<button class="text-primary active:scale-95 transition-transform duration-200" id="menu-btn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight">Japão Nas Mãos</h1>
+<button class="text-primary active:scale-95 transition-transform duration-200 relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+</header>
+<!-- Side Navigation Drawer (Hidden by default) -->
+<div class="fixed inset-0 bg-black/40 z-[55] hidden transition-opacity duration-300 opacity-0" id="drawer-overlay"></div>
+<aside class="fixed inset-y-0 left-0 z-[60] h-full w-80 rounded-r-xl bg-surface-container shadow-xl -translate-x-full transition-transform duration-300" id="drawer">
+<div class="p-margin-mobile flex flex-col h-full">
+<div class="flex justify-between items-center mb-lg">
+<span class="font-headline-md text-headline-md text-primary">Menu</span>
+<button class="text-on-surface-variant" id="close-btn"><span class="material-symbols-outlined">close</span></button>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="bg-primary-container text-on-primary-container rounded-full px-4 py-3 font-bold flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">home</span> Início
+                </a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">face</span> Skincare
+                </a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">auto_fix_high</span> Maquiagem
+                </a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">spa</span> Corpo &amp; Banho
+                </a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-variant transition-colors text-primary font-bold" href="#">
+<span class="material-symbols-outlined">local_offer</span> Promoções
+                </a>
+</nav>
+</div>
+</aside>
+<main class="pt-16 pb-24">
+<!-- Hero Banner -->
+<section class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A premium high-end skincare banner image featuring a sophisticated collection of Japanese beauty products in elegant pink and frosted glass packaging. A Japanese woman with glowing skin is visible in the background in a soft-focus silk robe, applying serum. The atmosphere is bright, serene, and luxurious with soft natural lighting and cherry blossom accents." src="https://lh3.googleusercontent.com/aida/AP1WRLu8cAW6n85UmeYbhmap08TZFChnnLBtV-ougWfS7lnDMalCnolZAvrKRJ3i5x1kOVXZzN2VmefIogWlrpFdfAEapjIYz8J6YkTmtTyaXRDMbMu40H2_2GF8twgah35rGIrB5IUMdC9ubftOxmcZSUeYKc6aq-CrINmgLtUGNLty69_40QQ2363pbtcJjz3mRjto2fT9n18FiQXgjDnUnBOecAfLRcD_5jJohzoNyfSzqzaV0o6RR5m_et2j"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-end p-margin-mobile pb-12">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-white leading-tight mb-sm drop-shadow-md">A essência da beleza oriental em sua pele.</h2>
+<button class="bg-primary text-white font-button-text text-button-text px-lg py-3 rounded-xl self-start shadow-lg active:scale-95 transition-transform">
+                    Descubra o Ritual
+                </button>
+</div>
+</section>
+<!-- Category Circles -->
+<section class="py-lg bg-surface px-margin-mobile">
+<div class="flex justify-around items-start gap-4">
+<div class="flex flex-col items-center gap-2">
+<div class="category-circle w-16 h-16 rounded-full bg-surface-container-high border-2 border-primary-fixed p-1 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="A close up detailed shot of premium Korean skincare products on a clean marble surface with soft pink petals, bright natural light, luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3JH0yvbHgYOR95Bx1wRoNukyKx1kIX6bTHAzggm_lVnjAceG6rnDRdNe1Az7sSEffGC82L555Eagpzg8jADB53rljhfIxcBiW9g0sExSovavkbMHQcNvTCxnCpIPY52xSgCpBTqpxjSS0_XQwd2rHIOwmqxN1GN1t4Le8P0ShNe7Xdrnx67WQE9LavHBeIP4oaT6AwGejvAxu1G6i6fxhfFE08WyRzavxlQk9uauucE9DXRHC2YOBYSm_DHOFjDFQhfDGHAmkfOq0"/>
+</div>
+<span class="font-label-md text-label-md text-center">Coreana</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="category-circle w-16 h-16 rounded-full bg-surface-container-high border-2 border-primary-fixed p-1 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="A clean product shot of Japanese skincare essence in a minimalist frosted glass bottle with cherry blossom branches in the background, high-end studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCocVP5cqaePMexOx-ZlmeKtaTiOY94Ju2j9Jg3TWcWgS-k7KB-Vp4pCxMi3McscR5xqgjB8Ogk7MvlbVjiU4_zTWGsFfFAYLsUh-cb-15HQ2K8icShNVygAVoFzgJdSjCKecBEcFf3pZ_LslimaVisjINcbLGDkuy2SwUv09JVdrf8wWfWoLMdRLv8auZSfB4qYjkvJt8UiKWusiH96ruHk7yiX7vtRd79GQeqxavKqYh_wr20Gp9sg_LUFTd5Onv0-DnBwKlmPJuX"/>
+</div>
+<span class="font-label-md text-label-md text-center">Japonesa</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="category-circle w-16 h-16 rounded-full bg-surface-container-high border-2 border-primary-fixed p-1 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="Professional hair care product photography featuring a luxury hair oil bottle next to a wooden comb and silk ribbon, warm golden hour lighting, premium salon feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL45c2HaBr4SLJx74ENJG5s3RCuGvakcxGyqYlHP33X3lK9VY9HhSt8HXiSciPtiN9fk_K4kHQGZDgu1rne85ecsDgoggpNeh5VYE3BV-CAdgfIpemm2atw7VQO97mv11TtdllZotOUAu7MxiHTGSKzoxzZ1B455fWclBnSnUJatItQs4HqjfH01gobpg9L5euAUWWnHOKQcq7Tal2IkJ9n_sfqAroqZyKxULyXOVdcafDQRwe1naTc5gr6C71vm6JGt_pC-Rrk1mL"/>
+</div>
+<span class="font-label-md text-label-md text-center">Capilar</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="category-circle w-16 h-16 rounded-full bg-surface-container-high border-2 border-primary-fixed p-1 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="A collection of miniature skincare samples and travel sized products in a translucent pink bag, bright modern lighting, high quality aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIsvgcbH-VIqUsQggBIAshSi5tXy7SnHz__qSeyjJbb5ViE8h2Hc7nw-0RyNuo1oiX35SJ8cNSqRx2JLj5YQp84tUlBSnzLtUqvX5hemPvmR0oLyL_fOfn5Ip-bGLWIyS5EnRIyTf4HlTvn2qxb4IhwlSllr6vh8cchUK4wnhQs34gR6WjPKrsJfPA0Cs3hUSMCI7mH-f3nmU9yVmzRVMFKmuW9htI-24HQQQMFK15grkaWssG0M4WOAJN3GaFRQjrsC-AmA7wl-b1"/>
+</div>
+<span class="font-label-md text-label-md text-center">Kits</span>
+</div>
+</div>
+</section>
+<!-- Promo Banner -->
+<section class="px-margin-mobile mb-lg">
+<div class="bg-primary-container text-on-primary-container p-4 rounded-xl flex items-center justify-between shadow-sm border border-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl">payments</span>
+<div>
+<p class="font-headline-sm text-headline-sm-mobile leading-none">5% OFF no Pix</p>
+<p class="font-body-sm text-body-sm opacity-90">Em todo o site hoje</p>
+</div>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</section>
+<!-- Grid: Novidades -->
+<section class="px-margin-mobile mb-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md">Novidades</h3>
+<a class="text-primary font-label-md text-label-md" href="#">Ver tudo</a>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<!-- Product 1 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden flex flex-col">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuyTtGsXRdSw88ttrnd7DVK5hZdDnl6j7e8GicVp1rj2Q3TUXMF8T661vAuS8KOivtcgSdnkDnpTycf-lhA83Kf64nFETpK1fJSJM4Ok5w_k9BmXKto509tCxqjdfF_uZ2lzamERIWXSNqv4WsZc7O0_MFchgowU-RirTCZzz3xIGWmLm3yAPRO0YIkF-h618JqtTcINnMAPoJcq5xiXvErsr2z1M7vcSe1oD2-v0ouzgVLRVuLUOfdVxk"/>
+<span class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase">Novo</span>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<span class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider mb-1">Skincare Japonesa</span>
+<h4 class="font-body-md font-bold text-on-surface mb-2 line-clamp-2">Hada Labo Gokujyun Hyaluronic Acid</h4>
+<p class="text-primary font-price-display text-price-display mt-auto">R$ 124,90</p>
+<button class="mt-3 w-full border border-primary text-primary py-2 rounded-lg font-label-md hover:bg-primary hover:text-white transition-colors active:scale-95">Comprar</button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden flex flex-col">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuUy-8YHgftL0U7AYO-74szQssBuyGhl6TuEHP88hF7tvaRYzr-6FIs4JnzYybaWJuu9WUnp-kbtxRn0gJ4vEOesnkrwUafQ5a_ig6sJlntUknh0mkvcKS0RLPullFeLSfCOdvXfQSIb28X1O8cYB2y6Bhi25satj5ulyt--cTGp6qsTubhjLHmXgFvt_L02TtmPhc922M4lpwZPDfYnY9c1eklvldPwsi9NkyWvA8CcYSEMPAiEsUeT1yg"/>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<span class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider mb-1">Tratamento</span>
+<h4 class="font-body-md font-bold text-on-surface mb-2 line-clamp-2">Melano CC Vitamin C Serum Premium</h4>
+<p class="text-primary font-price-display text-price-display mt-auto">R$ 138,00</p>
+<button class="mt-3 w-full border border-primary text-primary py-2 rounded-lg font-label-md hover:bg-primary hover:text-white transition-colors active:scale-95">Comprar</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Grid: Mais Vendidos -->
+<section class="px-margin-mobile mb-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md">Mais Vendidos</h3>
+<a class="text-primary font-label-md text-label-md" href="#">Ver tudo</a>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<!-- Product 3 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden flex flex-col">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuDZIsjgmDO3DYAhSX6uu3MxX9qA8t-3LhaHOyLpgxq7Mo9360XBFVJHCzdM-Q9xhDWK9rRG6oSV7g3tfkoQe01btmnjByIPrn9nnFg63l56ESsYbPzDVR-IVpz4_z4DHpTVJXdsO7Z5f_JNi2kQQ-wawujwvIp7wygE1Be8obAa_N01V4b-s2ryGFSraJQCXdVw2_FLWDVs0eoKsKT1JQBn9n_qymIiQ2RkLqBgBAry7bonHf_OdRmVJU"/>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<span class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider mb-1">Proteção Solar</span>
+<h4 class="font-body-md font-bold text-on-surface mb-2 line-clamp-2">Beauty of Joseon Relief Sun Rice</h4>
+<p class="text-primary font-price-display text-price-display mt-auto">R$ 145,00</p>
+<button class="mt-3 w-full border border-primary text-primary py-2 rounded-lg font-label-md hover:bg-primary hover:text-white transition-colors active:scale-95">Comprar</button>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden flex flex-col">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsxHpq64qzkR04WKcS6uLUZN8fso_sYXV-shVwBpcqyVVF_aAixLD1CscgodA3wR3ekKoZltXy8PKiPrDHINkqo64rpZeO8UYJURCBRd8ZkajYS37jjNVAd30h9Ong_iaeAQYJB5Jt4jjH5-VsEjH7YraYT-06uLFQfuYRyl5d_GofmnECCQlqvnwzTLQS6ksyLsZp1W3Y_at6OgtU_KKfIYy3X9b-jHu1hKcjuO0s0UbwP8YnS4sfHu1xX"/>
+<span class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase">-15%</span>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<span class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider mb-1">Hidratação</span>
+<h4 class="font-body-md font-bold text-on-surface mb-2 line-clamp-2">Sulwhasoo Concentrated Ginseng Cream</h4>
+<div class="mt-auto">
+<p class="text-on-surface-variant text-[12px] line-through">R$ 420,00</p>
+<p class="text-primary font-price-display text-price-display">R$ 357,00</p>
+</div>
+<button class="mt-3 w-full border border-primary text-primary py-2 rounded-lg font-label-md hover:bg-primary hover:text-white transition-colors active:scale-95">Comprar</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Community Section -->
+<section class="mx-margin-mobile p-lg bg-surface-container rounded-3xl text-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-4xl mb-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<h3 class="font-headline-md text-headline-md mb-sm text-on-surface">Junte-se à nossa comunidade</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Receba dicas exclusivas de rituais de beleza orientais e ofertas antecipadas.</p>
+<div class="flex flex-col gap-sm">
+<input class="w-full bg-surface border-outline-variant rounded-xl px-4 py-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Seu melhor e-mail" type="email"/>
+<button class="bg-primary text-white py-3 rounded-xl font-bold active:scale-95 transition-transform">Inscrever-se</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile py-xl flex flex-col gap-md text-center bg-surface-container-low border-t border-outline-variant">
+<h5 class="font-headline-sm text-headline-sm text-primary">Japão Nas Mãos</h5>
+<div class="flex flex-col gap-xs font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Sobre Nós</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Políticas de Privacidade</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Termos de Uso</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Fale Conosco</a>
+</div>
+<div class="flex justify-center gap-md mt-sm">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">face_nod</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">photo_camera</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">play_circle</span>
+</div>
+<p class="text-on-surface-variant text-[12px] opacity-70 mt-md">© 2024 Japão Nas Mãos. Todos os direitos reservados.</p>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant pb-safe shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
+<a class="flex flex-col items-center justify-center text-primary relative after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-[10px]">Busca</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md text-[10px]">Favoritos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Perfil</span>
+</a>
+</nav>
+<script>
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const drawer = document.getElementById('drawer');
+        const overlay = document.getElementById('drawer-overlay');
+
+        function toggleDrawer() {
+            drawer.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+            setTimeout(() => {
+                overlay.classList.toggle('opacity-0');
+            }, 10);
+        }
+
+        menuBtn.addEventListener('click', toggleDrawer);
+        closeBtn.addEventListener('click', toggleDrawer);
+        overlay.addEventListener('click', toggleDrawer);
+    </script>
+</body></html>

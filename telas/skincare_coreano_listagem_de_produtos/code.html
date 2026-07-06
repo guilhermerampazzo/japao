@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#b50061",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#fffbff",
+                    "on-tertiary-fixed-variant": "#00530a",
+                    "tertiary": "#006b11",
+                    "background": "#fff8f8",
+                    "primary-fixed": "#ffd9e2",
+                    "on-tertiary-fixed": "#002202",
+                    "on-surface": "#27171c",
+                    "surface-bright": "#fff8f8",
+                    "surface": "#fff8f8",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#f8fff0",
+                    "on-secondary-fixed-variant": "#52424c",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#f9dbe2",
+                    "secondary": "#6a5a64",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#d6c1cc",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#e2bdc6",
+                    "tertiary-container": "#008818",
+                    "surface-tint": "#b90063",
+                    "surface-container-high": "#fee1e7",
+                    "surface-container": "#ffe8ed",
+                    "tertiary-fixed-dim": "#6bdf63",
+                    "primary-container": "#e10b7a",
+                    "inverse-surface": "#3e2b31",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#8e004a",
+                    "inverse-on-surface": "#ffecf0",
+                    "outline": "#8e6f77",
+                    "on-background": "#27171c",
+                    "secondary-fixed": "#f3dce8",
+                    "on-secondary-fixed": "#241820",
+                    "inverse-primary": "#ffb1c8",
+                    "surface-container-low": "#fff0f2",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#5a3f47",
+                    "tertiary-fixed": "#87fc7c",
+                    "secondary-container": "#f3dce8",
+                    "on-secondary-container": "#71606a",
+                    "on-primary-fixed": "#3e001d",
+                    "surface-dim": "#f0d3d9",
+                    "primary-fixed-dim": "#ffb1c8",
+                    "surface-container-highest": "#f9dbe2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "margin-mobile": "16px",
+                    "container-max": "1200px",
+                    "lg": "40px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "button-text": ["Inter"],
+                    "price-display": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Poppins"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Poppins"],
+                    "display-lg": ["Poppins"],
+                    "display-lg-mobile": ["Poppins"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .product-card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .product-card-shadow:hover {
+            box-shadow: 0 10px 30px rgba(181, 0, 97, 0.1);
+        }
+        /* Custom range slider styling */
+        input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #b50061;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-bright dark:bg-surface-dim shadow-sm">
+<div class="flex justify-between items-center px-sm md:px-lg h-xl max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed cursor-pointer">
+                Glow Rituals
+            </div>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Novidades</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Rosto</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Corpo</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Solares</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Kits</a>
+</nav>
+<div class="flex items-center gap-sm">
+<div class="hidden lg:flex items-center bg-surface-container-low px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant scale-90">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-40" placeholder="Buscar ritual..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">favorite</button>
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">person</button>
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">shopping_bag</button>
+</div>
+</div>
+</header>
+<main class="mt-xl pt-lg max-w-container-max mx-auto px-sm md:px-lg min-h-screen">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-xs text-body-sm text-on-surface-variant mb-md">
+<a class="hover:text-primary" href="#">Início</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">Skincare Coreano</span>
+</nav>
+<!-- Category Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">Skincare Coreano</h1>
+<p class="text-body-md text-on-surface-variant max-w-2xl">
+                    Descubra o segredo da "Glass Skin" com nossa curadoria exclusiva de produtos importados diretamente de Seul. Fórmulas inovadoras e texturas leves para todos os tipos de pele.
+                </p>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-lg border-t md:border-none pt-sm md:pt-0">
+<span class="text-label-md text-on-surface-variant">48 produtos</span>
+<div class="relative group">
+<button class="flex items-center gap-xs bg-surface-container-low px-md py-xs rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="text-label-md">Ordenar por: Relevância</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Side Navigation (Filters) -->
+<aside class="w-full md:w-64 shrink-0">
+<div class="sticky top-xl bg-surface-container-low rounded-xl p-md">
+<div class="flex items-center justify-between mb-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Filtros</h2>
+<p class="text-label-md text-on-surface-variant">Refine sua busca</p>
+</div>
+<button class="text-label-md text-primary hover:underline transition-all">Limpar Filtros</button>
+</div>
+<!-- Category Filter -->
+<div class="mb-lg">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary">category</span>
+<h3 class="font-label-md text-on-surface font-bold">Categorias</h3>
+</div>
+<div class="space-y-xs">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">Limpadores</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">Tônicos & Essências</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">Séruns & Tratamentos</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">Hidratantes</span>
+</label>
+</div>
+</div>
+<!-- Brand Filter -->
+<div class="mb-lg">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary">label</span>
+<h3 class="font-label-md text-on-surface font-bold">Marcas</h3>
+</div>
+<div class="space-y-xs">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">ANUA</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">MEDICUBE</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">Beauty of Joseon</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-primary">COSRX</span>
+</label>
+</div>
+</div>
+<!-- Price Filter -->
+<div class="mb-lg">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h3 class="font-label-md text-on-surface font-bold">Preço</h3>
+</div>
+<div class="px-xs">
+<input class="w-full h-1 bg-outline-variant rounded-lg appearance-none cursor-pointer" max="1000" min="0" step="50" type="range"/>
+<div class="flex justify-between mt-xs text-body-sm text-on-surface-variant">
+<span>R$ 0</span>
+<span>R$ 1000+</span>
+</div>
+</div>
+</div>
+<!-- Skin Type Filter -->
+<div class="mb-md">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary">face</span>
+<h3 class="font-label-md text-on-surface font-bold">Tipo de Pele</h3>
+</div>
+<div class="grid grid-cols-2 gap-xs">
+<button class="bg-surface-container-high text-label-md py-xs px-xs rounded-lg text-primary font-bold">Oleosa</button>
+<button class="bg-surface hover:bg-surface-container-high text-label-md py-xs px-xs rounded-lg text-on-surface-variant transition-all">Seca</button>
+<button class="bg-surface hover:bg-surface-container-high text-label-md py-xs px-xs rounded-lg text-on-surface-variant transition-all">Mista</button>
+<button class="bg-surface hover:bg-surface-container-high text-label-md py-xs px-xs rounded-lg text-on-surface-variant transition-all">Sensível</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<section class="flex-1">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter mb-xl">
+<!-- Product Card 1 -->
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-md right-md z-10 bg-primary text-white text-label-md px-sm py-1 rounded-full">-15%</div>
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close-up studio shot of a minimalist frosted glass bottle of ANUA Heartleaf 77% Soothing Toner. The lighting is soft and ethereal, emphasizing the clean, water-like transparency of the product. The background is a soft pink and white gradient, conveying a fresh, high-end skincare aesthetic. Sharp focus on the elegant label typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZlAAbiK0wvYKdcS2ostQnjl8D5XJ8wbRM9b44kG45djXMG8usCh59jhXovc66hdW5lO0VKbV3gkVWq1HdaL-7LA5Nns9FKqHoAwxBR0XoIHVFtBedGs4yWnQmjkZRWQSJ3MhqeW1YqQWVHARczl_3SMZR_mFWXMubAhViEd-WETEWmMevsGKbB3GovZnm1GkuOKKG_tmhVEv8GMm4jWd_t2df-fADlZFiwp3gOEbKy32ssHEqzSCKa-VEd19mG-tYDAMad_achCPa"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">ANUA</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Heartleaf 77% Soothing Toner</h3>
+<div class="mt-auto">
+<div class="flex items-center gap-xs mb-base">
+<span class="text-body-sm text-on-surface-variant line-through">R$ 189,00</span>
+<span class="text-primary font-bold text-label-md">15% OFF</span>
+</div>
+<span class="text-primary font-price-display text-price-display">R$ 160,65</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Sleek white tube of Beauty of Joseon Relief Sun Rice + Probiotics sunscreen resting on a textured light-colored stone surface. Ambient natural light creates soft shadows. The overall mood is peaceful, clean, and professional. The product packaging stands out against the muted, high-key background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATv8IgqWOTqbOeqLoFMQvcWeNYrxNzSEfNuLoJgpDKDuzPssDEEngd1OwpC32gmp5Jwr52gRfDZjwZwotWfktxKJ92zSub1bJoqtMaH9CGcuqSQ8iSTAQMru0cF9di2-AgRhCTI2OFnM0qZwtYspk0k4TXd27icucUaOnfnhXGJkAiXQQeyQX8yohRFvkMEss6bauRelokArXIE7uWUC3lvylrHXciiXVtH_ZPhsah9YIix1D_OASZkbHHK7X9Ybed9Z-qRbOmxHvc"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">Beauty of Joseon</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Relief Sun : Rice + Probiotics</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 145,00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 (Repeat Pattern) -->
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-md right-md z-10 bg-primary text-white text-label-md px-sm py-1 rounded-full">Esgotado</div>
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="High-tech skincare device Medicube Age-R Booster-H displayed on a reflective white surface. The product is illuminated by soft, professional studio lights with a subtle magenta glow in the background. The aesthetic is futuristic, premium, and clean, highlighting the device's sleek silver finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbYG2o0Jo42G8ADkjc1h8ghAl1LwGrY0ZcwRh-xfwQkq_kLrBS4Ja41C9ckfx8PXsl1GkNhAGxbAqrYIybPDsIVPxP-7t88C1Ph52KM20Rqpqngrst-rrt8fhLkCk1RYhUhG6ZLEqxhTifU0iMlI-DjwzGW9lcCoMlNSluZsBO9vkm340c9ylCqpp-PDwv1Y2G6E-IrhBIrqvHvcFf5WgUUXNzY6F_OT-0Cor9G8jRExnhznXlWFNgrBgy6_0egQRB1rU8ucWL7kJA"/>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">MEDICUBE</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Age-R Booster-H High-Tech Glow</h3>
+<div class="mt-auto">
+<span class="text-on-surface-variant font-price-display text-price-display">R$ 1.290,00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A jar of Beauty of Joseon Dynasty Cream sitting elegantly beside a sprig of dried herbs. The lighting is warm and natural, evoking a traditional apothecary feel mixed with modern luxury. The focus is on the creamy texture of the product and the minimalist ceramic-like jar design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk80Or7AUFcKZvRzyc6rh372n8OGsG8qJW77cEtTr8c7epVAQ4BJbJupkWor7bFMIxIX1OtvEUiv-Lyn43vQVPLnAY4GoGv38IVFpQHX7TX64hw8w5MFxQpep1DjzPRXb06wEPE0qgPQVOb1CjaPhZsemjpwDTnwsXQWC07EEBjMW_A2fc8Y9fWLPAwTnOD-d1UWAiZ1pGQAWrd0WXABKljZYRKbXWPsLy9YS5qyznLj50nG0OVDmJZqyg_Ii18p0VFY1A5FxDKB1w"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">Beauty of Joseon</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Dynasty Cream Moisturizer</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 210,00</span>
+</div>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="COSRX Advanced Snail 96 Mucin Power Essence bottle on a clean white countertop. Light creates a ripple effect in the background, suggesting hydration and liquid freshness. The aesthetic is pharmaceutical-grade clean with a feminine touch of soft lighting and a bright, airy atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByU5JnXbshuPs5SqvW2UlXMTGQ5sl10HYwsu0pe2cKZm87NXdaavQXtduiHmWAKLYCTaAwVKLs6iMeeKRmTqC4r-mfb3aNf1Jvqwk2-4pipzmgSRVP95zxY84H-YSKkk73_QQo-Os3EFXvYxod_fPb5U2PzNbYZHhYdJytp0CqzpwFLq2diMajaCcehQleltc1WBrk6jPRe4kuOrJa-nShB5kbgsW7Bhw4Txbsm1g4Tw3JM0uJ_LblGKWPOarmmMxvOxEaREMxuIMW"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">COSRX</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Advanced Snail 96 Mucin Essence</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 178,00</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-md right-md z-10 bg-primary text-white text-label-md px-sm py-1 rounded-full">Novo</div>
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="ANUA Heartleaf Pore Control Cleansing Oil bottle among fresh green leaves. Soft morning sunlight filters through the scene, highlighting the golden clarity of the oil. The design is botanical, fresh, and highlights the natural ingredients of the Korean skincare ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt2sPP3BcndsxAqR-7PVoQSuH6MJndqioilBlJJU8MZ2Vrb4l18xp0ogKFSWxV-XDBCxQsAVfwao86tmkCLA769qnjWSz6SI6DZ3Vqg6NaD6-3eLBWnKoITO4VoMWMc9UGVSChJY3rJgdoKBBt2PKKdGaD0t3xWnTMcsMfy825tz1EV-ZFCXllzObl0xIMp3Cu0wTsXs6hsUpgyFao-dEDyQRAM_WzxO22tlCxqHHf79DyuqwqTEtK2wIJxHn19ZXata0ae1cvxe6v"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">ANUA</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Heartleaf Pore Control Cleansing Oil</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 155,00</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Medicube Red Serum bottle with a medical-grade aesthetic, sitting on a sterile, white, illuminated surface. The lighting is professional and high-key, with minimal red accents to match the branding. The atmosphere is trustworthy and scientifically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-pbHwp0YboU_UZ4hs01tqe4_mBEnA4II40NA4uMVeEhC79VyAruU8c3pYz7tqZFe-5RFsb5Uh6coMU6g3KUfFLUPV2MsEm_tuiLJm-w4r4ankOJICOVUD99X7vRRhq7DgYma7oBGw0goRvKnDPTpbmUWmQVJbH-ZjNRLw1AaDubEg4-SF_fNbskZXeQDYjYccIUScaYQUvLI-IJGcJsIxaqxPfl1YJ2ZANe-Hkcwt5BYPUfkFoJFx2-49wUrWpxiwzu6k_kt6dPpJ"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">MEDICUBE</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Red Serum Targeted Care</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 289,00</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Beauty of Joseon Revive Serum with Ginseng and Snail Mucin, shown against a traditional Korean hanok wooden background. The lighting is warm and natural, merging ancient wisdom with modern skincare elegance. The bottle looks precious and highly effective." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZkZ8jBLXUU1hcRwsBKdrP-oDnBJRdz8oiLUaMcSd3XZTAQv0tkxFM0UoMU3-M5-q0yjCT3cpfdAlo3kr_DMIaThpnpEj-LQaZBFK2tPamYg3qka-cQJW3WNbY0uwIGnXwTPq9kHBob75_WCWCXqUbGfrSCUS9xqaraGV6fWdoGHW89H-5-fqsXPa7WEL_L_TVRzx61ocTeYSTrM4NTYXhEznHD84_ytjTENjPuBNsx6WDgQNHOupybczngQYW4PG6peoG1AOi9OsZ"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">Beauty of Joseon</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Revive Serum : Ginseng + Snail Mucin</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 195,00</span>
+</div>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Sleek white tube of COSRX Low pH Good Morning Gel Cleanser amidst splashing water droplets. The scene is bright, dynamic and incredibly fresh, lit with high-key cool light. It feels revitalizing and pure, matching the product's gentle cleansing promise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn3rFV2Vyvi96oIEC_LN_pJnBjDoP6Dm9aYqOKgINTRKtfv6d4kVjXV4Q8jp-U2pYkvUAZVo1RlCFM_Rs2jZcDqVlpLKMGmbOrHw0WlKojZlFyaRMQx_O-Fi-dHxPSUxJSf0-ILKUB99GGF1KcM1iiXRGde8tauPcT_c12gFRqCZjAmZ7SnCu2PIcV8c7RM0ROHp-b_1EM3Gb8pNixE4L_6V863t4I3zc9xyt-CyqkobUbmTj-o22D3EssidhDB0d2CbyKRiiq7d00"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">COSRX</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Low pH Good Morning Gel Cleanser</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 115,00</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="ANUA Heartleaf 70% Intense Calming Cream in a minimalist tub on a bed of river stones. The atmosphere is zen, balanced, and calming, with soft neutral tones. Professional studio lighting creates depth and highlights the smooth matte finish of the packaging." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiu3WI6vCC6os-awTzHVz_Qb0ngGxHq91mlIo1IlZsbEktmneVaw7JKEwfN3xbY4qrFnNQ1ljJn_DuwjxssgiuD-KmZ7gkf_99tXSb98azbgkG4tIZZ40NsR936-RmjGoY7rX8bGlZC264hMlRd-jlBRs0EKQT8l_MwiFGigkgqgegO7UrepRKOiWQS7hzklz0g07N7ULQAyVdxbb7pbCEpz8SHDosLfWpzCqSfXgK0gQCcNeMGMW8GRWUK7cxiGan0y4veRKIF62T"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">ANUA</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Heartleaf 70% Intense Calming Cream</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 225,00</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-md right-md z-10 bg-primary text-white text-label-md px-sm py-1 rounded-full">-20%</div>
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Medicube Zero Pore Pad tub on a clean white bathroom shelf. Soft morning light creates a clean, routine-focused mood. The jar has a high-end feel, with the focus on the red branding against the white packaging. Minimalist and professional skincare setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNx182qTDjCZNUHAby1IGtxdUa3VNLzEN4t-Spdm0YgMwQQhP3XjG87yEm50sT9Bul11SslzbJyvRKYvegfhEpDnPZ2mlyosDb6DT46gTq1NrqgCOPtbaN37cnMAUJp-43u03INa5jemOuuu8l1fAWS2Wvm3qM6O6WAEZ_ODKcut886mOec2PteTMCXiBJDPQyz3WJYnFp0Yf4EqlfVmTh7tkfiA-OHesxVr1QVGT_1AwrdqvVnXcalGHQSNkrrljE7WYHiPrjUaWt"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">MEDICUBE</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Zero Pore Pad 2.0 Exfoliating</h3>
+<div class="mt-auto">
+<div class="flex items-center gap-xs mb-base">
+<span class="text-body-sm text-on-surface-variant line-through">R$ 240,00</span>
+</div>
+<span class="text-primary font-price-display text-price-display">R$ 192,00</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface rounded-xl p-base product-card-shadow transition-all relative overflow-hidden flex flex-col h-full">
+<div class="aspect-square w-full rounded-lg bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Beauty of Joseon Glow Serum with Propolis and Niacinamide inside a small glass dropper bottle. The light is focused to create a golden, glowing effect within the honey-colored serum. The setting is luxurious and suggests a premium, radiant skin result." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4N4-MB8ViobqfVEQYzH7a_8INQ45P1K031Lofj-AFGEbdV8z7rGABbTt-wvLI95PatgEzGTVSyUoYbEYQYrlxRvbCeV52LMJHl-il9OuX4gTQQbOfp81U7bQCZ8Jbpg9QOqj4H91FRl7VQAUTKWpafWC5BI0GFAMYwmail9RNTJcnftX6xmcrynud0VPqfx34V6ebZEsJdLpqwjHeukEXJkCr-fFroeC56C_wmgtKQHjdDuw0hazTMzRVWBJuTQBOZXGvA2Tpun4q"/>
+<button class="absolute bottom-md left-1/2 -translate-x-1/2 bg-primary text-on-primary w-11/12 py-sm rounded-xl font-button-text text-button-text opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                                Adicionar
+                            </button>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<p class="text-body-sm text-on-surface-variant mb-base">Beauty of Joseon</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-sm line-clamp-2">Glow Serum : Propolis + Niacinamide</h3>
+<div class="mt-auto">
+<span class="text-primary font-price-display text-price-display">R$ 195,00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center gap-xs mb-xl">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button></div></section></div></main></body></html>

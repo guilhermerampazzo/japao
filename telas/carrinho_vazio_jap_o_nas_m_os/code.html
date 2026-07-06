@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glow Rituals | Carrinho</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#00530a",
+                    "secondary": "#6a5a64",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#5a3f47",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecf0",
+                    "tertiary-container": "#008818",
+                    "tertiary": "#006b11",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#fff0f2",
+                    "secondary-fixed-dim": "#d6c1cc",
+                    "surface-tint": "#b90063",
+                    "on-secondary-fixed-variant": "#52424c",
+                    "surface-bright": "#fff8f8",
+                    "secondary-container": "#f3dce8",
+                    "primary": "#b50061",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#e10b7a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#002202",
+                    "on-background": "#27171c",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb1c8",
+                    "on-primary-fixed-variant": "#8e004a",
+                    "primary-fixed-dim": "#ffb1c8",
+                    "on-primary-fixed": "#3e001d",
+                    "outline": "#8e6f77",
+                    "tertiary-fixed-dim": "#6bdf63",
+                    "background": "#fff8f8",
+                    "surface-container": "#ffe8ed",
+                    "secondary-fixed": "#f3dce8",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#f8fff0",
+                    "on-surface": "#27171c",
+                    "surface-container-highest": "#f9dbe2",
+                    "surface": "#fff8f8",
+                    "surface-container-high": "#fee1e7",
+                    "on-secondary-container": "#71606a",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#f0d3d9",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed": "#87fc7c",
+                    "surface-variant": "#f9dbe2",
+                    "inverse-surface": "#3e2b31",
+                    "outline-variant": "#e2bdc6",
+                    "on-secondary-fixed": "#241820",
+                    "primary-fixed": "#ffd9e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "xs": "8px",
+                    "container-max": "1200px",
+                    "md": "24px",
+                    "base": "4px",
+                    "xl": "64px",
+                    "margin-mobile": "16px",
+                    "sm": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "price-display": ["Inter"],
+                    "body-md": ["Inter"],
+                    "button-text": ["Inter"],
+                    "headline-md": ["Poppins"],
+                    "display-lg-mobile": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Poppins"],
+                    "headline-sm": ["Poppins"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "price-display": ["20px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "button-text": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom scrollbar for drawer */
+        .drawer-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .drawer-content::-webkit-scrollbar-thumb {
+            background: #e2bdc6;
+            border-radius: 10px;
+        }
+
+        /* Animation for drawer slide */
+        .drawer-slide-in {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Backdrop fade */
+        .backdrop-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- Mock Homepage Content (to show under the overlay) -->
+<header class="fixed top-0 w-full z-40 bg-surface shadow-sm px-sm md:px-lg h-xl flex justify-between items-center max-w-container-max mx-auto left-0 right-0">
+<div class="font-headline-md text-headline-md font-bold text-primary">Glow Rituals</div>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Novidades</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Rosto</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Corpo</a>
+</nav>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">favorite</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">person</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<main class="pt-xl px-sm max-w-container-max mx-auto">
+<section class="py-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-md">Beleza Inspirada na Tradição</h1>
+<p class="text-body-lg text-on-surface-variant mb-lg">Descubra o ritual japonês de skincare para uma pele radiante e saudável.</p>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-button-text hover:bg-primary-container transition-all">Explorar Coleção</button>
+</div>
+<div class="relative h-96 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="High-end editorial photography of minimalist Japanese skincare bottles arranged on a clean white marble surface. Soft sunlight creates gentle shadows, evoking a sense of morning ritual and tranquility. The color palette is dominated by soft whites, pale pinks, and magenta accents, matching a premium light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxpR-KgVAd4c73aDph56mqzWN22gKAQ5BjVqjc0HlKk0v4PNuU4gSEjSNeB_DBmPdyQrgdvHX4k_Q5dnUh8BAZLVbdOEG4ZR1Oq19PfeDq9w1N7fsFHxbdj2kYeUsZLczlpu-Q55XSK0UiN79tq_aRyeUEw4jKiiPInn_GEnDaq3TAH-w6RTXrPf_RjWU5XOSSUCDBZsiNpn6xnIXuNa6m5d5oSsBLp5_a6l89mB0uRZkyNzFctKZCfTk6AAYLajytRpcQTWpAcVHW"/>
+</div>
+</div>
+</section>
+</main>
+<!-- SHOPPING CART DRAWER OVERLAY -->
+<!-- Backdrop -->
+<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm backdrop-fade-in flex justify-end" id="cart-backdrop">
+<!-- Drawer -->
+<div class="w-full max-w-md h-full bg-surface-container-lowest shadow-2xl drawer-slide-in flex flex-col relative" id="cart-drawer">
+<!-- Header -->
+<div class="px-lg py-sm flex justify-between items-center border-b border-outline-variant/30">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Carrinho</h2>
+</div>
+<button class="p-base hover:bg-surface-container-high rounded-full transition-colors" onclick="toggleCart()">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<!-- Empty State Content -->
+<div class="flex-1 flex flex-col items-center justify-center px-lg text-center gap-lg">
+<!-- Minimalist Illustration Container -->
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Subtle background decoration -->
+<div class="absolute inset-0 bg-primary/5 rounded-full scale-90"></div>
+<!-- Illustration Placeholder -->
+<div class="z-10 w-48 h-48 rounded-2xl overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-contain" data-alt="A minimalist line art illustration of an elegant Japanese shopping bag with a delicate cherry blossom branch tucked inside. The style is clean and modern, using only thin magenta and soft gray lines against a pristine white background. The composition is airy and centered, reflecting a high-end boutique aesthetic for a skincare brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEo2Hy36dcrUjqDy9AEOGpvNL6CIb5x4l7_mY63RRzgLdX6oV-V42AMX8fuFaBeUkvb7dGaMckGesDZ4MzWSJYlD_N264hrWcBWUCbJj_1e1WoSZygy8CuxxJ0DbvFi_GuCtXBC58Q0Zcloa4YGRgcBK8XUars8XpClKy1w7VxsHN3dM2VlevYUbGSbhpt7IaKiBGAJr9ep8BoH_5aeqo9H0swcXOvKRMMlWwm5AdA2wS89tfVZLDx8rx8uwGjZl8Zy1p-Ppcs5zT3"/>
+</div>
+</div>
+<!-- Text & Action -->
+<div class="space-y-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Seu carrinho está vazio</h3>
+<p class="font-body-md text-on-surface-variant max-w-[280px]">Parece que você ainda não adicionou nenhum item ao seu ritual de beleza.</p>
+</div>
+<button class="w-full max-w-xs bg-primary text-on-primary py-md rounded-xl font-button-text shadow-sm hover:bg-primary-container active:scale-95 transition-all flex items-center justify-center gap-xs">
+                    Ver produtos
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Suggested Products (Subtle Bento Footer) -->
+<div class="p-lg bg-surface-container-low/50 border-t border-outline-variant/20">
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider mb-md">Pode interessar você</p>
+<div class="grid grid-cols-2 gap-md">
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg bg-surface-bright overflow-hidden mb-xs relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a premium hydrating serum bottle with Japanese typography, minimalist branding, soft pink glass, sitting on a textured off-white surface with soft studio lighting. High-end skincare product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ6-PXKsUGoFFOB2m0DIck4TJhevp4WInusLw7D3bj_rDSxaBQOOz2OKmRKFAQBwAN4wV3HTNXHywcq3BWWrDbtOApm_YD3a_aYpsg7abzeI8TBrozWcqDUmq_K2qrfItBFtl5va_txNZQzVd1RRW5ArktqQ0E7JfbgNHCO9gMxSlYfUqPOMBYco1XC4XYzOw4CygnZ-GoGLZhGD-IJu6F4ysezekH8n_ZfvYuOL2IBnO3JHIO7yoZzKTgfx6momhrE8jPwI3tZTdq"/>
+</div>
+<p class="text-[12px] font-bold text-on-surface truncate">Sérum Iluminador</p>
+<p class="text-[12px] text-primary">R$ 189,00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg bg-surface-bright overflow-hidden mb-xs relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist tub of Japanese rice water cleansing balm, elegant matte finish, soft magenta accents, professional product photography with clean shadows and bright aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYm6CK7nv7eYbj28DcbEcjQSJrSOI2fiWpDjZ3BcUUHz_24U-aS6BghyyKMfEI7jWGErwt-NgFgsCifBsrKU4ygpt7sYtxS7arK3sqydl90SRsHmaEgHDA2dVbUcd4o6H8NdjWJRtBXi8UIwEAYV71CxJfCE_oDc5eHcr3-lHycVazUX0Y5S5nTqvHQ8hLh-H0kQLdepdL4UwyqZbik93nNKQVHQayMkFdK2Vlk9hrgOxKZW9Xwu3INv4aqC72suU0eCry-zai0bev"/>
+</div>
+<p class="text-[12px] font-bold text-on-surface truncate">Cleansing Balm</p>
+<p class="text-[12px] text-primary">R$ 145,00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer from Shared Components -->
+<footer class="w-full py-xl px-sm md:px-lg flex flex-col items-center gap-md bg-surface-container mt-xl">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">Glow Rituals</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Sobre Nós</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Política de Privacidade</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Pagamentos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Trocas e Devoluções</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Segurança</a>
+</div>
+<p class="text-on-surface-variant font-body-sm">© 2024 Glow Rituals - Skincare Japonês de Alta Performance.</p>
+</footer>
+<script>
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-backdrop');
+            
+            if (drawer.classList.contains('drawer-slide-in')) {
+                // Play out animation logic
+                drawer.style.transform = 'translateX(100%)';
+                drawer.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+                backdrop.style.opacity = '0';
+                backdrop.style.transition = 'opacity 0.3s ease-out';
+                
+                setTimeout(() => {
+                    backdrop.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 400);
+            } else {
+                backdrop.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close when clicking backdrop
+        document.getElementById('cart-backdrop').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('cart-backdrop')) {
+                toggleCart();
+            }
+        });
+    </script>
+</body></html>
