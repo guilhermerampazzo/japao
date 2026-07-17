@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { FiTruck, FiMapPin } from "react-icons/fi";
 import { getProductBySlug } from "@/lib/catalog";
 import { formatBRL, discountPercent } from "@/lib/money";
 import { RichText } from "@/lib/richtext";
@@ -65,6 +66,17 @@ export default async function ProductPage({
               </span>
             )}
           </div>
+          {product.origin === "BRASIL" ? (
+            <span className="inline-flex items-center gap-2 self-start bg-tertiary-container text-on-tertiary-container text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full">
+              <FiMapPin className="w-3.5 h-3.5" />
+              Pronta entrega no Brasil
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-2 self-start bg-secondary-container text-on-secondary-container text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full">
+              <FiTruck className="w-3.5 h-3.5" />
+              Direto do Japão
+            </span>
+          )}
           {product.descriptionHtml ? (
             <RichText html={product.descriptionHtml} />
           ) : (

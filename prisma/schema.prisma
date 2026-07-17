@@ -78,6 +78,11 @@ model Category {
   products Product[]
 }
 
+enum ProductOrigin {
+  BRASIL
+  JAPAO
+}
+
 model Product {
   id              String           @id @default(cuid())
   name            String
@@ -89,6 +94,7 @@ model Product {
   category        Category         @relation(fields: [categoryId], references: [id])
   active          Boolean          @default(true)
   featured        Boolean          @default(false)
+  origin          ProductOrigin    @default(JAPAO)
   ratingAvg       Float            @default(0)
   weightGrams     Int              @default(300)
   images          ProductImage[]
@@ -132,16 +138,18 @@ model Review {
 }
 
 model Coupon {
-  id         String     @id @default(cuid())
-  code       String     @unique
-  type       CouponType
-  value      Int        // percent (0-100) or cents
-  minCents   Int        @default(0)
-  expiresAt  DateTime?
-  maxUses    Int?
-  usedCount  Int        @default(0)
-  active     Boolean    @default(true)
-  orders     Order[]
+  id                 String     @id @default(cuid())
+  code               String     @unique
+  type               CouponType
+  value              Int        // percent (0-100) or cents
+  minCents           Int        @default(0)
+  expiresAt          DateTime?
+  maxUses            Int?
+  usedCount          Int        @default(0)
+  active             Boolean    @default(true)
+  affiliateName      String?
+  commissionPercent  Int?
+  orders             Order[]
 }
 
 model Cart {

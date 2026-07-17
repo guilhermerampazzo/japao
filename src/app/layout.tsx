@@ -57,7 +57,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <Header storeName={settings.storeName} tagline={settings.tagline} navItems={navItems} />
+        <Header storeName={settings.storeName} navItems={navItems} />
         <main className="pt-20 flex-1">{children}</main>
         <Footer storeName={settings.storeName} footerAbout={settings.footerAbout} pages={pages} />
         <CartDrawer />

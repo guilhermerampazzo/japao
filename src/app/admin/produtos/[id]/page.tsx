@@ -30,6 +30,7 @@ export default async function EditProduct({ params }: { params: Promise<{ id: st
           descriptionHtml: product.descriptionHtml ?? `<p>${product.description}</p>`,
           categoryId: product.categoryId,
           featured: product.featured,
+          origin: product.origin,
           priceCents: v?.priceCents ?? 0,
           compareAtCents: v?.compareAtCents ?? null,
           stock: v?.stock ?? 0,

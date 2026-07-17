@@ -2,54 +2,54 @@
 
 /* ===== Japão Nas Mãos — Design System (from telas/jap_o_nas_m_os/DESIGN.md) ===== */
 @theme {
-  /* Colors */
-  --color-surface: #fff8f8;
-  --color-surface-dim: #f0d3d9;
-  --color-surface-bright: #fff8f8;
+  /* Colors — vermelho + preto (identidade da logo/banner Japão Nas Mãos) */
+  --color-surface: #fffdfb;
+  --color-surface-dim: #e6ddd9;
+  --color-surface-bright: #fffdfb;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #fff0f2;
-  --color-surface-container: #ffe8ed;
-  --color-surface-container-high: #fee1e7;
-  --color-surface-container-highest: #f9dbe2;
-  --color-on-surface: #27171c;
-  --color-on-surface-variant: #5a3f47;
-  --color-inverse-surface: #3e2b31;
-  --color-inverse-on-surface: #ffecf0;
-  --color-outline: #8e6f77;
-  --color-outline-variant: #e2bdc6;
-  --color-surface-tint: #b90063;
-  --color-primary: #b50061;
+  --color-surface-container-low: #faf6f4;
+  --color-surface-container: #f5efec;
+  --color-surface-container-high: #efe7e3;
+  --color-surface-container-highest: #e8dedb;
+  --color-on-surface: #1a1414;
+  --color-on-surface-variant: #4a3f3c;
+  --color-inverse-surface: #2b2222;
+  --color-inverse-on-surface: #fdf1ee;
+  --color-outline: #7a6f6c;
+  --color-outline-variant: #d9cdc9;
+  --color-surface-tint: #bc002d;
+  --color-primary: #bc002d;
   --color-on-primary: #ffffff;
-  --color-primary-container: #e10b7a;
-  --color-on-primary-container: #fffbff;
-  --color-inverse-primary: #ffb1c8;
-  --color-secondary: #6a5a64;
+  --color-primary-container: #d4183f;
+  --color-on-primary-container: #ffffff;
+  --color-inverse-primary: #ff8a9e;
+  --color-secondary: #3a3a3a;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #f3dce8;
-  --color-on-secondary-container: #71606a;
-  --color-tertiary: #006b11;
+  --color-secondary-container: #f7e6e6;
+  --color-on-secondary-container: #4a3535;
+  --color-tertiary: #1a1a1a;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #008818;
-  --color-on-tertiary-container: #f8fff0;
+  --color-tertiary-container: #2b2b2b;
+  --color-on-tertiary-container: #f5f5f5;
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
   --color-error-container: #ffdad6;
   --color-on-error-container: #93000a;
-  --color-primary-fixed: #ffd9e2;
-  --color-primary-fixed-dim: #ffb1c8;
-  --color-on-primary-fixed: #3e001d;
-  --color-on-primary-fixed-variant: #8e004a;
-  --color-secondary-fixed: #f3dce8;
-  --color-secondary-fixed-dim: #d6c1cc;
-  --color-on-secondary-fixed: #241820;
-  --color-on-secondary-fixed-variant: #52424c;
-  --color-tertiary-fixed: #87fc7c;
-  --color-tertiary-fixed-dim: #6bdf63;
-  --color-on-tertiary-fixed: #002202;
-  --color-on-tertiary-fixed-variant: #00530a;
-  --color-background: #fff8f8;
-  --color-on-background: #27171c;
-  --color-surface-variant: #f9dbe2;
+  --color-primary-fixed: #ffd9dc;
+  --color-primary-fixed-dim: #ffb3ba;
+  --color-on-primary-fixed: #410008;
+  --color-on-primary-fixed-variant: #93000f;
+  --color-secondary-fixed: #ececec;
+  --color-secondary-fixed-dim: #d0d0d0;
+  --color-on-secondary-fixed: #1a1a1a;
+  --color-on-secondary-fixed-variant: #3a3a3a;
+  --color-tertiary-fixed: #d9d9d9;
+  --color-tertiary-fixed-dim: #bfbfbf;
+  --color-on-tertiary-fixed: #0d0d0d;
+  --color-on-tertiary-fixed-variant: #2b2b2b;
+  --color-background: #fffdfb;
+  --color-on-background: #1a1414;
+  --color-surface-variant: #e8dedb;
 
   /* Fonts */
   --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
@@ -88,7 +88,7 @@ body {
   transition: box-shadow 0.3s ease;
 }
 .product-card-shadow:hover {
-  box-shadow: 0 8px 30px rgba(181, 0, 97, 0.08);
+  box-shadow: 0 8px 30px rgba(188, 0, 45, 0.1);
 }
 .glass-header {
   backdrop-filter: blur(12px);

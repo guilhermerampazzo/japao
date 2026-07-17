@@ -2,12 +2,60 @@ export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import Image from "next/image";
+import {
+  FiShield,
+  FiShoppingBag,
+  FiSend,
+  FiHeadphones,
+  FiPackage,
+  FiCheckCircle,
+} from "react-icons/fi";
 import { getFeatured, getNewest, getCategories } from "@/lib/catalog";
 import { getSiteSettings } from "@/lib/settings";
 import ProductGrid from "@/components/ProductGrid";
 
-const DEFAULT_HERO_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAvETSSARBq122R-wK97HoohEecB_fa_P6YuDT5CVn2ZHQQUufK88WQSEf8QuBs61gNqNwhWGzF1l8iQ82y3zYRBBvGxKx_Re4PyAB2D03WfZIPW-pbR5bFqlAmu_oJFCjp48LVyVDeFOJ81b7q6RaYzd8zLiFkSF_4fzd5qMw96fkv6vKKIxUoPVaDUKHYNnwzCCuZ4BJihRHHoBZl1hzBHaNxMv9wWN3Ge7v-KQeth3_OF-aLW39oOFFyQk0OmEeXclDOa5WnExPV";
+const DEFAULT_HERO_IMAGE = "/banner.jpeg";
+
+const GUARANTEES = [
+  { icon: FiShield, label: "Compra segura" },
+  { icon: FiShoppingBag, label: "Produtos selecionados no Japão" },
+  { icon: FiSend, label: "Enviamos para todo o Brasil" },
+  { icon: FiHeadphones, label: "Atendimento personalizado" },
+  { icon: FiPackage, label: "Embalagem protegida" },
+] as const;
+
+const HOW_IT_WORKS = [
+  {
+    step: "1",
+    title: "Escolha seus produtos",
+    description: "Navegue pelo site e encontre seus produtos favoritos.",
+  },
+  {
+    step: "2",
+    title: "Finalize sua compra",
+    description: "Compre de forma simples e segura.",
+  },
+  {
+    step: "3",
+    title: "Preparamos seu pedido",
+    description: "Conferimos cada item e realizamos uma embalagem cuidadosa.",
+  },
+  {
+    step: "4",
+    title: "Enviamos para você",
+    description: "Seu pedido sai diretamente do Japão com toda segurança.",
+  },
+] as const;
+
+const WHY_CHOOSE_US = [
+  "Produtos originais",
+  "Seleção cuidadosa",
+  "Atendimento personalizado",
+  "Compra segura",
+  "Embalagem protegida",
+  "Envio internacional",
+  "Transparência em todo o processo",
+] as const;
 
 export default async function Home() {
   const [featured, newest, categories, settings] = await Promise.all([
@@ -48,13 +96,33 @@ export default async function Home() {
             <p className="text-lg text-on-surface-variant mb-lg max-w-[28rem]">
               {settings.heroSubtitle}
             </p>
-            <Link
-              href={settings.heroCtaHref}
-              className="inline-block bg-primary text-white font-medium px-xl py-md rounded-md hover:bg-primary-container transition-all shadow-lg"
-            >
-              {settings.heroCtaLabel}
-            </Link>
+            <div className="flex flex-wrap items-center gap-md">
+              <Link
+                href={settings.heroCtaHref}
+                className="inline-block bg-primary text-white font-medium px-xl py-md rounded-md hover:bg-primary-container transition-all shadow-lg"
+              >
+                {settings.heroCtaLabel}
+              </Link>
+              <Link
+                href="/busca"
+                className="inline-block bg-surface-container-lowest text-on-surface font-medium px-xl py-md rounded-md border border-outline-variant hover:border-primary hover:text-primary transition-all"
+              >
+                Ver Produtos
+              </Link>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Barra de garantias */}
+      <section className="bg-tertiary text-on-tertiary">
+        <div className="max-w-[1200px] mx-auto px-lg py-lg grid grid-cols-2 md:grid-cols-5 gap-lg">
+          {GUARANTEES.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex flex-col items-center text-center gap-2">
+              <Icon className="w-6 h-6 text-primary" />
+              <span className="text-xs font-semibold uppercase tracking-wide">{label}</span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -74,14 +142,55 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Novidades */}
+      {/* Como Funciona */}
       <section className="py-xl bg-surface-container-lowest">
+        <div className="max-w-[1200px] mx-auto px-lg">
+          <div className="mb-lg text-center">
+            <h2 className="font-display text-2xl font-bold text-on-background">Como Funciona</h2>
+            <div className="h-1 w-20 bg-primary mt-2 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-lg">
+            {HOW_IT_WORKS.map((s) => (
+              <div key={s.step} className="flex flex-col items-center text-center gap-sm">
+                <div className="w-12 h-12 rounded-full bg-primary text-white font-display font-bold text-lg flex items-center justify-center">
+                  {s.step}
+                </div>
+                <h3 className="font-display font-semibold text-on-surface">{s.title}</h3>
+                <p className="text-sm text-on-surface-variant">{s.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Novidades */}
+      <section className="py-xl">
         <div className="max-w-[1200px] mx-auto px-lg">
           <div className="mb-lg">
             <h2 className="font-display text-2xl font-bold text-on-background">Novidades imperdíveis</h2>
             <div className="h-1 w-20 bg-primary mt-2" />
           </div>
           <ProductGrid products={newest} />
+        </div>
+      </section>
+
+      {/* Por que escolher a Japão nas Mãos */}
+      <section className="py-xl bg-tertiary text-on-tertiary">
+        <div className="max-w-[1200px] mx-auto px-lg">
+          <div className="mb-lg text-center">
+            <h2 className="font-display text-2xl font-bold">Por que escolher a Japão nas Mãos?</h2>
+            <p className="text-sm text-on-tertiary/80 mt-2">
+              Porque comprar diretamente do Japão faz toda a diferença.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-md max-w-3xl mx-auto">
+            {WHY_CHOOSE_US.map((item) => (
+              <div key={item} className="flex items-center gap-sm">
+                <FiCheckCircle className="w-5 h-5 text-primary shrink-0" />
+                <span className="text-sm">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -117,6 +226,25 @@ export default async function Home() {
             <div className="h-1 w-20 bg-primary mt-2" />
           </div>
           <ProductGrid products={featured} />
+        </div>
+      </section>
+
+      {/* Chamada final */}
+      <section className="bg-primary text-white">
+        <div className="max-w-[1200px] mx-auto px-lg py-xl text-center flex flex-col items-center gap-md">
+          <h2 className="font-display text-2xl md:text-3xl font-bold">
+            Pronta para ter o Japão nas suas mãos?
+          </h2>
+          <p className="text-white/90 max-w-xl">
+            Descubra produtos exclusivos e receba tudo diretamente do Japão com segurança,
+            qualidade e confiança.
+          </p>
+          <Link
+            href={settings.heroCtaHref}
+            className="inline-block bg-white text-primary font-bold px-xl py-md rounded-md hover:bg-surface-container-lowest transition-all shadow-lg"
+          >
+            Comprar Agora
+          </Link>
         </div>
       </section>
     </>

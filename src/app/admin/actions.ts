@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-import type { OrderStatus } from "@prisma/client";
+import type { OrderStatus, ProductOrigin } from "@prisma/client";
 
 async function requireAdmin() {
   const session = await auth();
@@ -38,12 +38,13 @@ export async function upsertProduct(formData: FormData) {
   const stock = parseInt(String(formData.get("stock") ?? "0"), 10);
   const image = String(formData.get("image") ?? "");
   const featured = formData.get("featured") === "on";
+  const origin = String(formData.get("origin") ?? "JAPAO") as ProductOrigin;
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
   if (id) {
     await prisma.product.update({
       where: { id },
-      data: { name, slug, description, descriptionHtml, categoryId, featured },
+      data: { name, slug, description, descriptionHtml, categoryId, featured, origin },
     });
     const variant = await prisma.productVariant.findFirst({ where: { productId: id } });
     if (variant) {
@@ -66,6 +67,7 @@ export async function upsertProduct(formData: FormData) {
         descriptionHtml,
         categoryId,
         featured,
+        origin,
         images: image ? { create: [{ url: image, order: 0 }] } : undefined,
         variants: {
           create: [{ sku: `${slug}-${Date.now()}`, name: "Padrão", priceCents, compareAtCents, stock }],

@@ -7,7 +7,10 @@ import { createCoupon, toggleCoupon, deleteCoupon } from "./actions";
 export const dynamic = "force-dynamic";
 
 export default async function CuponsPage() {
-  const coupons = await prisma.coupon.findMany({ orderBy: { code: "asc" } });
+  const coupons = await prisma.coupon.findMany({
+    where: { affiliateName: null },
+    orderBy: { code: "asc" },
+  });
 
   return (
     <div>

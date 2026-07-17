@@ -11,6 +11,7 @@ type Product = {
   descriptionHtml: string;
   categoryId: string;
   featured: boolean;
+  origin: "BRASIL" | "JAPAO";
   priceCents: number;
   compareAtCents: number | null;
   stock: number;
@@ -41,6 +42,12 @@ export default function ProductForm({
               {categories.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
+            </Select>
+          </Field>
+          <Field label="Origem" hint="Exibida como selo na página do produto">
+            <Select name="origin" defaultValue={product?.origin ?? "JAPAO"}>
+              <option value="JAPAO">Direto do Japão</option>
+              <option value="BRASIL">Pronta entrega no Brasil</option>
             </Select>
           </Field>
         </div>

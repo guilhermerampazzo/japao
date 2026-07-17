@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useCart } from "@/stores/cart";
 import { useUI } from "@/stores/ui";
@@ -10,11 +11,9 @@ export type NavItemData = { label: string; href: string };
 
 export default function Header({
   storeName,
-  tagline,
   navItems,
 }: {
   storeName: string;
-  tagline: string;
   navItems: NavItemData[];
 }) {
   const { toggle, count, subtotalCents } = useCart();
@@ -27,13 +26,15 @@ export default function Header({
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/95 glass-header border-b border-outline-variant/30 shadow-sm h-20">
       <div className="flex justify-between items-center gap-md px-lg h-full max-w-[1200px] mx-auto">
-        <Link href="/" className="flex flex-col leading-none shrink-0">
-          <span className="font-display text-xl md:text-2xl font-bold text-primary">
-            {storeName}
-          </span>
-          <span className="text-[10px] tracking-[0.2em] uppercase text-on-surface-variant">
-            {tagline}
-          </span>
+        <Link href="/" className="flex items-center shrink-0" aria-label={storeName}>
+          <Image
+            src="/logo.png"
+            alt={storeName}
+            width={160}
+            height={160}
+            priority
+            className="h-14 w-auto"
+          />
         </Link>
         <nav className="hidden md:flex items-center gap-md">
           {navItems.map((n) => (
