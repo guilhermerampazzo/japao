@@ -37,7 +37,7 @@ export default function PageForm({ page }: { page: PageData }) {
       </CardSection>
 
       <CardSection title="SEO" description="Como esta página aparece no Google e nas redes sociais.">
-        <div className="grid grid-cols-2 gap-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-md">
           <Field label="Título SEO" hint="Opcional">
             <Input name="seoTitle" defaultValue={page?.seoTitle ?? ""} />
           </Field>

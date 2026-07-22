@@ -23,8 +23,8 @@ export default async function ProductPage({
     : 0;
 
   return (
-    <div className="max-w-[1200px] mx-auto px-lg py-xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+    <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-lg md:gap-xl">
         {/* Galeria */}
         <div className="relative aspect-square rounded-xl overflow-hidden bg-surface-container">
           {product.images[0] && (

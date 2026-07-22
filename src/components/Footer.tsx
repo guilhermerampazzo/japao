@@ -15,7 +15,7 @@ export default function Footer({
 }) {
   return (
     <footer className="w-full mt-xl bg-surface-container border-t border-outline-variant">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-lg px-lg py-xl max-w-[1200px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg px-margin-mobile sm:px-lg py-xl max-w-[1200px] mx-auto">
         <div className="flex flex-col gap-md">
           <div className="font-display text-xl font-bold text-primary">{storeName}</div>
           <p className="text-sm text-on-surface-variant">{footerAbout}</p>

@@ -2,15 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useCart } from "@/stores/cart";
 import { formatBRL } from "@/lib/money";
 
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
+
 export default function CartDrawer() {
   const { items, isOpen, close, setQty, remove, subtotalCents } = useCart();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  const isClient = useIsClient();
+  if (!isClient) return null;
 
   return (
     <>

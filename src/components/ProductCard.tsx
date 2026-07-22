@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
           src={product.image}
           alt={product.name}
           fill
-          sizes="(max-width:768px) 50vw, 25vw"
+          sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
           className="object-cover"
         />
         {discount > 0 && (
@@ -38,15 +38,15 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
           </div>
         )}
       </Link>
-      <div className="p-md flex flex-col gap-1 flex-1">
+      <div className="p-sm sm:p-md flex flex-col gap-1 flex-1">
         <span className="text-[12px] text-on-surface-variant uppercase tracking-wider">{product.category}</span>
         <Link href={`/produto/${product.slug}`}>
-          <h3 className="font-bold text-on-surface leading-tight h-10 overflow-hidden group-hover:text-primary transition-colors">
+          <h3 className="font-bold text-on-surface leading-tight min-h-10 group-hover:text-primary transition-colors">
             {product.name}
           </h3>
         </Link>
-        <div className="flex items-center gap-2 mt-1">
-          <span className="text-primary font-semibold text-xl">{formatBRL(product.priceCents)}</span>
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mt-1">
+          <span className="text-primary font-semibold text-lg sm:text-xl">{formatBRL(product.priceCents)}</span>
           {product.compareAtCents && (
             <span className="text-xs text-on-surface-variant line-through">
               {formatBRL(product.compareAtCents)}
@@ -64,7 +64,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
               image: product.image,
             })
           }
-          className="mt-md bg-primary text-white text-sm font-medium py-2 rounded-md hover:bg-primary-container transition-colors flex items-center justify-center gap-1"
+          className="mt-auto bg-primary text-white text-sm font-medium py-2 rounded-md hover:bg-primary-container transition-colors flex items-center justify-center gap-1 min-h-10"
         >
           <span className="material-symbols-outlined text-base">add_shopping_cart</span>
           Adicionar

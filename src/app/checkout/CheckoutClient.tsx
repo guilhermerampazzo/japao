@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/stores/cart";
 import { formatBRL } from "@/lib/money";
 import { createOrder } from "./actions";
@@ -113,21 +114,21 @@ export default function CheckoutClient() {
     return (
       <div className="text-center py-xl">
         <p className="text-on-surface-variant mb-md">Seu carrinho está vazio.</p>
-        <a href="/" className="text-primary font-medium">Explorar produtos</a>
+        <Link href="/" className="text-primary font-medium">Explorar produtos</Link>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-lg lg:gap-xl">
       {/* Endereço + frete */}
       <div className="lg:col-span-2 flex flex-col gap-lg">
-        <section className="bg-white rounded-lg product-card-shadow p-lg">
+        <section className="bg-white rounded-lg product-card-shadow p-md sm:p-lg">
           <h2 className="font-display text-xl font-bold mb-md">Endereço de Entrega</h2>
-          <div className="grid grid-cols-2 gap-md">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-md">
             <Input label="CEP" value={addr.cep} onChange={(v) => set("cep", v)} onBlur={onCepBlur} />
-            <div />
-            <Input label="Logradouro" value={addr.street} onChange={(v) => set("street", v)} className="col-span-2" />
+            <div className="hidden sm:block" />
+            <Input label="Logradouro" value={addr.street} onChange={(v) => set("street", v)} className="sm:col-span-2" />
             <Input label="Número" value={addr.number} onChange={(v) => set("number", v)} />
             <Input label="Complemento" value={addr.complement} onChange={(v) => set("complement", v)} />
             <Input label="Bairro" value={addr.district} onChange={(v) => set("district", v)} />
@@ -137,11 +138,11 @@ export default function CheckoutClient() {
         </section>
 
         {shipOptions.length > 0 && (
-          <section className="bg-white rounded-lg product-card-shadow p-lg">
+          <section className="bg-white rounded-lg product-card-shadow p-md sm:p-lg">
             <h2 className="font-display text-xl font-bold mb-md">Frete</h2>
             <div className="flex flex-col gap-2">
               {shipOptions.map((o) => (
-                <label key={o.id} className="flex items-center gap-md border border-outline-variant rounded-md px-md py-sm cursor-pointer">
+                <label key={o.id} className="flex flex-col sm:flex-row sm:items-center gap-sm sm:gap-md border border-outline-variant rounded-md px-md py-sm cursor-pointer">
                   <input type="radio" name="ship" checked={shipId === o.id} onChange={() => setShipId(o.id)} />
                   <span className="flex-1">{o.name} · até {o.deliveryDays} dias úteis</span>
                   <span className="font-semibold text-primary">
@@ -155,28 +156,28 @@ export default function CheckoutClient() {
       </div>
 
       {/* Resumo */}
-      <aside className="bg-white rounded-lg product-card-shadow p-lg h-fit flex flex-col gap-md">
+      <aside className="bg-white rounded-lg product-card-shadow p-md sm:p-lg h-fit flex flex-col gap-md">
         <h2 className="font-display text-xl font-bold">Resumo do Pedido</h2>
         <div className="flex flex-col gap-sm">
           {items.map((i) => (
-            <div key={i.variantId} className="flex gap-sm items-center">
+            <div key={i.variantId} className="flex gap-sm items-center min-w-0">
               <div className="relative w-12 h-12 rounded-md overflow-hidden bg-surface-container shrink-0">
                 <Image src={i.image} alt={i.name} fill sizes="48px" className="object-cover" />
               </div>
-              <span className="flex-1 text-sm">{i.name} × {i.quantity}</span>
+              <span className="flex-1 text-sm min-w-0">{i.name} × {i.quantity}</span>
               <span className="text-sm font-medium">{formatBRL(i.priceCents * i.quantity)}</span>
             </div>
           ))}
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <input
             value={coupon}
             onChange={(e) => setCoupon(e.target.value)}
             placeholder="Cupom"
             className="flex-1 border border-outline-variant rounded-md px-md py-2 text-sm"
           />
-          <button onClick={applyCoupon} className="bg-secondary-container text-on-secondary-container px-md rounded-md text-sm font-medium">
+          <button onClick={applyCoupon} className="bg-secondary-container text-on-secondary-container px-md py-2 rounded-md text-sm font-medium">
             Aplicar
           </button>
         </div>

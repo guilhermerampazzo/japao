@@ -14,7 +14,7 @@ export default async function CategoryPage({
   if (!data) notFound();
 
   return (
-    <div className="max-w-[1200px] mx-auto px-lg py-xl">
+    <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-xl">
       <div className="mb-lg">
         <h1 className="font-display text-3xl font-bold text-on-background">{data.category.name}</h1>
         <div className="h-1 w-20 bg-primary mt-2" />

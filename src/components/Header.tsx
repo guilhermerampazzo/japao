@@ -2,12 +2,20 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useCart } from "@/stores/cart";
 import { useUI } from "@/stores/ui";
 import { formatBRL } from "@/lib/money";
 
 export type NavItemData = { label: string; href: string };
+
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
 
 export default function Header({
   storeName,
@@ -18,14 +26,13 @@ export default function Header({
 }) {
   const { toggle, count, subtotalCents } = useCart();
   const openSearch = useUI((s) => s.openSearch);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  const itemCount = mounted ? count() : 0;
-  const subtotal = mounted ? subtotalCents() : 0;
+  const isClient = useIsClient();
+  const itemCount = isClient ? count() : 0;
+  const subtotal = isClient ? subtotalCents() : 0;
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/95 glass-header border-b border-outline-variant/30 shadow-sm h-20">
-      <div className="flex justify-between items-center gap-md px-lg h-full max-w-[1200px] mx-auto">
+      <div className="flex justify-between items-center gap-sm sm:gap-md px-margin-mobile sm:px-lg h-full max-w-[1200px] mx-auto">
         <Link href="/" className="flex items-center shrink-0" aria-label={storeName}>
           <Image
             src="/logo.png"

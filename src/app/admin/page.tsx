@@ -36,7 +36,7 @@ export default async function AdminDashboard() {
     <div className="flex flex-col gap-lg">
       <PageHeader title="Dashboard" description="Visão geral da loja em tempo real." />
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
         <MetricCard icon="payments" label="Faturamento (pago)" value={formatBRL(revenueCents)} />
         <MetricCard icon="task_alt" label="Pedidos pagos" value={String(paidCount)} />
         <MetricCard icon="trending_up" label="Ticket médio" value={formatBRL(avgTicketCents)} />
@@ -49,8 +49,8 @@ export default async function AdminDashboard() {
             {STATUS_ORDER.map((status) => {
               const count = statusMap[status] ?? 0;
               return (
-                <div key={status} className="flex items-center gap-3">
-                  <span className="text-sm text-on-surface-variant w-40 shrink-0">
+                <div key={status} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <span className="text-sm text-on-surface-variant sm:w-40 shrink-0">
                     {ORDER_STATUS_LABELS[status]}
                   </span>
                   <div className="flex-1 h-2 rounded-full bg-surface-container overflow-hidden">
@@ -59,7 +59,7 @@ export default async function AdminDashboard() {
                       style={{ width: `${(count / maxStatusCount) * 100}%` }}
                     />
                   </div>
-                  <span className="text-sm font-semibold w-6 text-right">{count}</span>
+                  <span className="text-sm font-semibold sm:w-6 sm:text-right">{count}</span>
                 </div>
               );
             })}
@@ -72,7 +72,7 @@ export default async function AdminDashboard() {
           ) : (
             <div className="flex flex-col gap-2">
               {lowStock.map((v) => (
-                <div key={v.id} className="flex justify-between items-center text-sm py-1">
+                <div key={v.id} className="flex justify-between items-center gap-sm text-sm py-1">
                   <span className="text-on-surface">{v.product.name}</span>
                   <Badge tone="danger">{v.stock} un.</Badge>
                 </div>
@@ -97,13 +97,13 @@ export default async function AdminDashboard() {
               <Link
                 key={o.id}
                 href={`/admin/pedidos/${o.id}`}
-                className="flex justify-between items-center text-sm py-2.5 px-2 -mx-2 rounded-lg hover:bg-surface-container transition-colors"
+                className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm py-2.5 px-2 -mx-2 rounded-lg hover:bg-surface-container transition-colors"
               >
                 <div>
                   <span className="font-medium">#{o.number}</span>
                   <span className="text-on-surface-variant"> — {o.user.name}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between sm:justify-start gap-3">
                   <Badge tone={ORDER_STATUS_TONE[o.status] ?? "neutral"}>{ORDER_STATUS_LABELS[o.status]}</Badge>
                   <span className="font-semibold text-primary w-24 text-right">{formatBRL(o.totalCents)}</span>
                 </div>

@@ -28,7 +28,7 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
   const st = STATUS[order.status] ?? STATUS.PENDING;
 
   return (
-    <div className="max-w-[720px] mx-auto px-lg py-xl">
+    <div className="max-w-[720px] mx-auto px-margin-mobile sm:px-lg py-xl">
       <div className="bg-white rounded-xl product-card-shadow p-lg text-center">
         <span className="material-symbols-outlined text-6xl text-tertiary">check_circle</span>
         <h1 className="font-display text-3xl font-bold mt-2">Pedido confirmado!</h1>

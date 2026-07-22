@@ -22,7 +22,7 @@ export default function MidiaGallery() {
     <div className="flex flex-col gap-lg">
       <MediaUploader onUploaded={(asset) => setAssets((prev) => [asset, ...prev])} />
       {loading ? (
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-sm">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="aspect-square rounded-lg bg-surface-container animate-pulse" />
           ))}
@@ -30,7 +30,7 @@ export default function MidiaGallery() {
       ) : assets.length === 0 ? (
         <EmptyState icon="photo_library" title="Nenhuma imagem enviada ainda" description="Envie sua primeira imagem acima." />
       ) : (
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
           {assets.map((a) => (
             <div key={a.id} className="flex flex-col gap-1">
               <div className="relative aspect-square rounded-lg overflow-hidden border border-outline-variant bg-white">

@@ -88,12 +88,12 @@ async function main() {
     void product;
   }
 
-  // Cupom das telas
+  // Cupom padrão exibido no banner promocional.
   await prisma.coupon.upsert({
-    where: { code: "hello10" },
-    update: {},
+    where: { code: "bemvindo10" },
+    update: { active: true },
     create: {
-      code: "hello10",
+      code: "bemvindo10",
       type: CouponType.PERCENT,
       value: 10,
       minCents: 0,
@@ -104,8 +104,15 @@ async function main() {
   // Configurações globais do site (singleton) — cria apenas se não existir
   await prisma.siteSettings.upsert({
     where: { id: "singleton" },
-    update: {},
-    create: { id: "singleton" },
+    update: {
+      promoBadge: "BEM-VINDO",
+      promoCouponCode: "bemvindo10",
+    },
+    create: {
+      id: "singleton",
+      promoBadge: "BEM-VINDO",
+      promoCouponCode: "bemvindo10",
+    },
   });
 
   // Menu do topo

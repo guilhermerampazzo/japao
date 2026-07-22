@@ -254,9 +254,9 @@ model SiteSettings {
 
   // Banner promocional (home)
   promoActive                  Boolean @default(true)
-  promoBadge                   String  @default("HELLO JAPÃO")
+  promoBadge                   String  @default("BEM-VINDO")
   promoTitle                   String  @default("10% de desconto na primeira compra")
-  promoCouponCode              String  @default("hello10")
+  promoCouponCode              String  @default("bemvindo10")
 
   // SEO padrão
   seoTitle                     String  @default("Japão Nas Mãos | Skincare Asiático Premium")

@@ -14,15 +14,15 @@ export default async function SearchPage({
   const products = query ? await searchProducts(query) : [];
 
   return (
-    <div className="max-w-[1200px] mx-auto px-lg py-xl">
-      <form action="/busca" className="mb-lg flex gap-sm max-w-[36rem]">
+    <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-xl">
+      <form action="/busca" className="mb-lg flex flex-col sm:flex-row gap-sm max-w-[36rem]">
         <input
           name="q"
           defaultValue={query}
           placeholder="Buscar produtos..."
           className="flex-1 border border-outline-variant rounded-md px-md py-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
-        <button className="bg-primary text-white px-lg rounded-md font-medium">Buscar</button>
+        <button className="bg-primary text-white px-lg py-sm sm:py-0 rounded-md font-medium">Buscar</button>
       </form>
 
       {!query ? (

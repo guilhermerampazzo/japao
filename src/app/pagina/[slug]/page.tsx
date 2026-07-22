@@ -33,7 +33,7 @@ export default async function ContentPage({
   if (!page || !page.published) notFound();
 
   return (
-    <div className="max-w-[800px] mx-auto px-lg py-xl">
+    <div className="max-w-[800px] mx-auto px-margin-mobile sm:px-lg py-xl">
       <h1 className="font-display text-3xl font-bold mb-md">{page.title}</h1>
       <RichText html={page.contentHtml} />
     </div>

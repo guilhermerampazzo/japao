@@ -54,7 +54,7 @@ export default function ProductForm({
       </CardSection>
 
       <CardSection title="Preço e estoque">
-        <div className="grid grid-cols-3 gap-md">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-md">
           <Field label="Preço (R$)">
             <Input name="price" type="number" step="0.01" defaultValue={product ? (product.priceCents / 100).toFixed(2) : ""} required />
           </Field>

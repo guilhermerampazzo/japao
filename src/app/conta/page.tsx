@@ -31,7 +31,7 @@ export default async function AccountPage() {
   if (!user) redirect("/login");
 
   return (
-    <div className="max-w-[1200px] mx-auto px-lg py-xl">
+    <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-xl">
       <div className="flex items-center justify-between mb-lg">
         <h1 className="font-display text-3xl font-bold">Minha Conta</h1>
         <form action={logoutAction}>
@@ -41,7 +41,7 @@ export default async function AccountPage() {
         </form>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-lg md:gap-xl">
         <section>
           <h2 className="font-display text-xl font-bold mb-md">Dados Pessoais</h2>
           <ProfileForm

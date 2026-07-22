@@ -25,7 +25,7 @@ export default async function AparenciaPage() {
             <Field label="Subtítulo">
               <Textarea name="heroSubtitle" defaultValue={s.heroSubtitle} rows={3} />
             </Field>
-            <div className="grid grid-cols-2 gap-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-md">
               <Field label="Texto do botão">
                 <Input name="heroCtaLabel" defaultValue={s.heroCtaLabel} />
               </Field>

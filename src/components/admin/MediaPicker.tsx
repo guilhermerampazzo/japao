@@ -84,7 +84,7 @@ export default function MediaPicker({
                 }}
               />
             </div>
-            <div className="p-md overflow-y-auto grid grid-cols-4 sm:grid-cols-5 gap-2">
+            <div className="p-md overflow-y-auto grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2">
               {loading && Array.from({ length: 10 }).map((_, i) => (
                 <div key={i} className="aspect-square rounded-lg bg-surface-container animate-pulse" />
               ))}

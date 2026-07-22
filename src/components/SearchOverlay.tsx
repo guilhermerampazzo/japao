@@ -30,12 +30,13 @@ export default function SearchOverlay() {
   useEffect(() => {
     if (!searchOpen) return;
     const term = q.trim();
-    if (term.length < 2) {
-      setResults([]);
-      return;
-    }
-    setLoading(true);
     const t = setTimeout(async () => {
+      if (term.length < 2) {
+        setResults([]);
+        setLoading(false);
+        return;
+      }
+      setLoading(true);
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(term)}`).then((r) => r.json());
         setResults(res.products ?? []);
@@ -48,8 +49,11 @@ export default function SearchOverlay() {
 
   useEffect(() => {
     if (!searchOpen) {
-      setQ("");
-      setResults([]);
+      const t = setTimeout(() => {
+        setQ("");
+        setResults([]);
+      }, 0);
+      return () => clearTimeout(t);
     }
   }, [searchOpen]);
 
@@ -63,7 +67,7 @@ export default function SearchOverlay() {
   }
 
   return (
-    <div className="fixed inset-0 z-[80] flex justify-center pt-24 px-lg bg-black/40" onClick={closeSearch}>
+    <div className="fixed inset-0 z-[80] flex justify-center pt-24 px-margin-mobile sm:px-lg bg-black/40" onClick={closeSearch}>
       <div
         className="w-full max-w-[640px] h-fit bg-surface rounded-xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}

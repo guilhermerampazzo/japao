@@ -54,7 +54,7 @@ export default async function CuponsPage() {
         <CardSection title="Novo cupom">
           <form action={createCoupon} className="flex flex-col gap-md">
             <Field label="Código">
-              <Input name="code" placeholder="hello10" required />
+              <Input name="code" placeholder="bemvindo10" required />
             </Field>
             <Field label="Tipo">
               <Select name="type">

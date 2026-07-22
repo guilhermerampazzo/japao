@@ -85,7 +85,7 @@ export default async function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low via-surface-container-low/60 md:via-transparent to-transparent" />
         </div>
 
-        <div className="relative max-w-[1200px] mx-auto flex items-center min-h-[520px] px-lg py-xl">
+        <div className="relative max-w-[1200px] mx-auto flex items-center min-h-[520px] px-margin-mobile sm:px-lg py-xl">
           <div className="w-full md:w-1/2 z-10">
             <span className="text-primary font-bold tracking-widest text-sm uppercase mb-md block">
               {settings.heroEyebrow}
@@ -116,7 +116,7 @@ export default async function Home() {
 
       {/* Barra de garantias */}
       <section className="bg-tertiary text-on-tertiary">
-        <div className="max-w-[1200px] mx-auto px-lg py-lg grid grid-cols-2 md:grid-cols-5 gap-lg">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-md sm:gap-lg">
           {GUARANTEES.map(({ icon: Icon, label }) => (
             <div key={label} className="flex flex-col items-center text-center gap-2">
               <Icon className="w-6 h-6 text-primary" />
@@ -127,11 +127,11 @@ export default async function Home() {
       </section>
 
       {/* Categorias */}
-      <section className="py-xl max-w-[1200px] mx-auto px-lg">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-lg">
+      <section className="py-xl max-w-[1200px] mx-auto px-margin-mobile sm:px-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
           {categories.map((c) => (
             <Link key={c.slug} href={`/categoria/${c.slug}`} className="group flex flex-col items-center text-center gap-md">
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-secondary-container group-hover:border-primary transition-all duration-300 relative">
+              <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-secondary-container group-hover:border-primary transition-all duration-300 relative">
                 {c.image && <Image src={c.image} alt={c.name} fill sizes="160px" className="object-cover" />}
               </div>
               <span className="font-display text-lg font-semibold text-on-surface group-hover:text-primary transition-colors">
@@ -144,12 +144,12 @@ export default async function Home() {
 
       {/* Como Funciona */}
       <section className="py-xl bg-surface-container-lowest">
-        <div className="max-w-[1200px] mx-auto px-lg">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg">
           <div className="mb-lg text-center">
             <h2 className="font-display text-2xl font-bold text-on-background">Como Funciona</h2>
             <div className="h-1 w-20 bg-primary mt-2 mx-auto" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
             {HOW_IT_WORKS.map((s) => (
               <div key={s.step} className="flex flex-col items-center text-center gap-sm">
                 <div className="w-12 h-12 rounded-full bg-primary text-white font-display font-bold text-lg flex items-center justify-center">
@@ -165,7 +165,7 @@ export default async function Home() {
 
       {/* Novidades */}
       <section className="py-xl">
-        <div className="max-w-[1200px] mx-auto px-lg">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg">
           <div className="mb-lg">
             <h2 className="font-display text-2xl font-bold text-on-background">Novidades imperdíveis</h2>
             <div className="h-1 w-20 bg-primary mt-2" />
@@ -176,14 +176,14 @@ export default async function Home() {
 
       {/* Por que escolher a Japão nas Mãos */}
       <section className="py-xl bg-tertiary text-on-tertiary">
-        <div className="max-w-[1200px] mx-auto px-lg">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg">
           <div className="mb-lg text-center">
             <h2 className="font-display text-2xl font-bold">Por que escolher a Japão nas Mãos?</h2>
             <p className="text-sm text-on-tertiary/80 mt-2">
               Porque comprar diretamente do Japão faz toda a diferença.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-md max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md max-w-3xl mx-auto">
             {WHY_CHOOSE_US.map((item) => (
               <div key={item} className="flex items-center gap-sm">
                 <FiCheckCircle className="w-5 h-5 text-primary shrink-0" />
@@ -197,8 +197,8 @@ export default async function Home() {
       {/* Banner promocional */}
       {settings.promoActive && (
         <section className="py-xl">
-          <div className="max-w-[1200px] mx-auto px-lg">
-            <div className="relative bg-secondary-container rounded-xl p-xl flex flex-col md:flex-row items-center gap-xl overflow-hidden">
+          <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg">
+            <div className="relative bg-secondary-container rounded-xl p-md sm:p-xl flex flex-col md:flex-row items-center gap-md sm:gap-xl overflow-hidden">
               <div className="relative z-10 w-full md:w-2/3">
                 <div className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full mb-md">
                   {settings.promoBadge}
@@ -206,10 +206,10 @@ export default async function Home() {
                 <h2 className="font-display text-2xl md:text-4xl font-bold text-primary mb-md">
                   {settings.promoTitle}
                 </h2>
-                <div className="flex flex-wrap items-center gap-md">
-                  <div className="bg-white border-2 border-dashed border-primary px-lg py-sm rounded-md">
-                    <span className="text-sm text-on-surface-variant mr-2">Use o cupom:</span>
-                    <span className="font-bold text-primary text-xl">{settings.promoCouponCode}</span>
+                <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-md">
+                  <div className="bg-white border-2 border-dashed border-primary px-md sm:px-lg py-sm rounded-md">
+                    <span className="block sm:inline text-sm text-on-surface-variant sm:mr-2">Use o cupom:</span>
+                    <span className="font-bold text-primary text-lg sm:text-xl break-all">{settings.promoCouponCode}</span>
                   </div>
                 </div>
               </div>
@@ -220,7 +220,7 @@ export default async function Home() {
 
       {/* Destaques */}
       <section className="py-xl">
-        <div className="max-w-[1200px] mx-auto px-lg">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg">
           <div className="mb-lg">
             <h2 className="font-display text-2xl font-bold text-on-background">Mais Vendidos</h2>
             <div className="h-1 w-20 bg-primary mt-2" />
@@ -231,7 +231,7 @@ export default async function Home() {
 
       {/* Chamada final */}
       <section className="bg-primary text-white">
-        <div className="max-w-[1200px] mx-auto px-lg py-xl text-center flex flex-col items-center gap-md">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-xl text-center flex flex-col items-center gap-md">
           <h2 className="font-display text-2xl md:text-3xl font-bold">
             Pronta para ter o Japão nas suas mãos?
           </h2>
