@@ -121,9 +121,13 @@ async function main() {
   for (const c of cats) {
     const cat = await prisma.category.upsert({
       where: { slug: c.slug },
-      update: { name: c.name, image: c.image },
+      update: { name: c.name },
       create: c,
     });
+    // Migra imagem remota antiga, mas preserva upload local escolhido pelo admin
+    if (cat.image?.startsWith("http") && c.image) {
+      await prisma.category.update({ where: { id: cat.id }, data: { image: c.image } });
+    }
     catMap[c.slug] = cat.id;
   }
 
@@ -170,14 +174,15 @@ async function main() {
         },
       },
     });
-    // Garante que a imagem do produto aponte para o placeholder LOCAL — migra
-    // produtos criados por seeds antigos (que usavam URLs remotas do Google).
+    // Só define a imagem quando o produto não tem nenhuma OU quando a atual
+    // ainda é uma URL remota (migração de seeds antigos com lh3.googleusercontent).
+    // NUNCA sobrescreve uma imagem local que o admin já escolheu via upload.
     const firstImg = await prisma.productImage.findFirst({
       where: { productId: product.id },
       orderBy: { order: "asc" },
     });
     if (firstImg) {
-      if (firstImg.url !== p.img) {
+      if (firstImg.url.startsWith("http")) {
         await prisma.productImage.update({ where: { id: firstImg.id }, data: { url: p.img } });
       }
     } else {
