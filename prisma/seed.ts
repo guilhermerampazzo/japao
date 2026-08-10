@@ -119,15 +119,12 @@ async function main() {
   ];
   const catMap: Record<string, string> = {};
   for (const c of cats) {
+    // Imagem da categoria: nunca sobrescreve a que o admin escolheu
     const cat = await prisma.category.upsert({
       where: { slug: c.slug },
       update: { name: c.name },
       create: c,
     });
-    // Migra imagem remota antiga, mas preserva upload local escolhido pelo admin
-    if (cat.image?.startsWith("http") && c.image) {
-      await prisma.category.update({ where: { id: cat.id }, data: { image: c.image } });
-    }
     catMap[c.slug] = cat.id;
   }
 
@@ -174,18 +171,13 @@ async function main() {
         },
       },
     });
-    // Só define a imagem quando o produto não tem nenhuma OU quando a atual
-    // ainda é uma URL remota (migração de seeds antigos com lh3.googleusercontent).
-    // NUNCA sobrescreve uma imagem local que o admin já escolheu via upload.
+    // Nunca sobrescreve uma imagem existente (o admin pode ter escolhido foto
+    // própria ou mantido as URLs originais). Só cria quando não há nenhuma.
     const firstImg = await prisma.productImage.findFirst({
       where: { productId: product.id },
       orderBy: { order: "asc" },
     });
-    if (firstImg) {
-      if (firstImg.url.startsWith("http")) {
-        await prisma.productImage.update({ where: { id: firstImg.id }, data: { url: p.img } });
-      }
-    } else {
+    if (!firstImg) {
       await prisma.productImage.create({ data: { productId: product.id, url: p.img, order: 0 } });
     }
     void product;
