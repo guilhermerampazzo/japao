@@ -1,17 +1,102 @@
 import { PrismaClient, CouponType } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import sharp from "sharp";
+import path from "path";
+import { mkdir, access, stat } from "fs/promises";
 
 const prisma = new PrismaClient();
 
-// Imagens placeholder locais (substituíveis pelo admin depois)
-const IMG = {
-  sunscreen: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJFctmd1CeMRmvuAaACM1is5hLkfCnracnHxBVWiCfXMvPZATrXWN3-noUmu906AVP_ZzpleRnJiG0ZCeW5X1qm6ZeZSCkPIWsJbEvdAGb7MxLu-uQCks5Bl8KqJOD1Gc1lG0ue1IA6wIWl2jGm2NpeSfchFcdywVgoI6L7zznqtjMaMdB64x1BFd25J3CVGaEpsC8JsFjLjao8CUVl7IgZVIFblCn9oAJipLQ_c3Rfv8RaDbtHttb4GPBdp-Hhf_dcNcSa-wjcQlT",
-  essence: "https://lh3.googleusercontent.com/aida-public/AB6AXuDu0HJm3jfF-S2B2QPTULdUAmYveSnAyvhwxt7-goutIG80ViQMMDPCnvBMn1c4w5OijEykZ7OslKm3MrXU7qcng6-grq8-SO-ambA6-tH22oWQWT01q5fttxMoweuh7gVaqvS6rxeq4BAGJapOTHNhq1Ywgi6y7CRe6KMa3BESSFnQRnk-ql8xiVfdYgVJixKZMjNgnx1v4ca0Zf51U37nlE1_WwhQB8m9rFyuzCrKc2wF0D9s5GHbv6fTrbWkMFTxYlRsJcT8LeMw",
-  oil: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOSwbS0l6zZMNPdIRK0GNfrV-3eb9FJnZRZHF6XxlnNZDWcCqWoXXwHyL7mPM3u41r5bnD3zu7deiWLUqwQmE6hfaVAChoLAaHmjyJtqw8sjJ31enV0y1EUBuviK6oP4mdVoyGJpEbqSAqtwDe7qwrJhOtKpUoVT3bGn2fNCR8gQP3uQw8dTBBoUT9EtHAS1CnydbAs0Oc3QKokdk4SAtuSWvFUAgxfIZJ7flWKc576ycB7urlQOFKxeDmFMwHbAzHnHTsT_QfdWi3",
-  ampoule: "https://lh3.googleusercontent.com/aida-public/AB6AXuB7MWIYGOhpYksWpbUeFifpCHptYMgzCYv8TjWCGvhMb9MrLb6ttNy6RMCTmIgNyN7ZDuhhDFigkVqngWnUJpHPbmTHNsqlAEGUkqBdzv1w1yu3Ea67Yi2IdTXJi6JizY4myKK9hw0gR_KnKWt7uQoBgmQr2fcJNASo2WdjSEZVwdP7Vf_fzpMdHmO9c4jKZE6Qaf2IEXrbfA9ON2tb8EGjxsyRaT0IfEVOZ3cgziD7cpkfTNui6UZVnN615DCW55igB0T4wnCuVsC1",
-};
+// Imagens locais geradas no próprio seed (em uploads/, servidas por /media/...).
+// Motivo: os placeholders antigos apontavam para URLs remotas do Google
+// (lh3.googleusercontent.com) que travavam o carregamento nos módulos do admin.
+const UPLOAD_DIR = path.join(process.cwd(), "uploads");
+const PH_W = 800;
+const PH_H = 800;
+
+const PLACEHOLDERS = [
+  { key: "sunscreen", file: "placeholder-sunscreen.png", from: "#f9c8b8", to: "#f28e7e" },
+  { key: "essence", file: "placeholder-essence.png", from: "#f9c8dd", to: "#e86fa8" },
+  { key: "oil", file: "placeholder-oil.png", from: "#fbe3b8", to: "#e0a458" },
+  { key: "ampoule", file: "placeholder-ampoule.png", from: "#c9ecdf", to: "#5bbfa4" },
+  { key: "default", file: "placeholder-default.png", from: "#d9e2f0", to: "#8fa8c8" },
+];
+
+const IMG: Record<string, string> = Object.fromEntries(
+  PLACEHOLDERS.map((p) => [p.key, `/media/${p.file}`]),
+);
+
+function hexToRgb(hex: string) {
+  const n = parseInt(hex.slice(1), 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+
+/** Gera um PNG com gradiente vertical (sem depender de canvas/GL). */
+function gradientPng(from: string, to: string): Buffer {
+  const buf = Buffer.alloc(PH_W * PH_H * 4);
+  const f = hexToRgb(from);
+  const t = hexToRgb(to);
+  for (let y = 0; y < PH_H; y++) {
+    const k = y / (PH_H - 1);
+    const r = Math.round(f.r + (t.r - f.r) * k);
+    const g = Math.round(f.g + (t.g - f.g) * k);
+    const b = Math.round(f.b + (t.b - f.b) * k);
+    for (let x = 0; x < PH_W; x++) {
+      const i = (y * PH_W + x) * 4;
+      buf[i] = r;
+      buf[i + 1] = g;
+      buf[i + 2] = b;
+      buf[i + 3] = 255;
+    }
+  }
+  return buf;
+}
+
+/** Cria os placeholders em uploads/ (se ainda não existirem) e registra na biblioteca de mídia. */
+async function ensurePlaceholders() {
+  await mkdir(UPLOAD_DIR, { recursive: true });
+  for (const p of PLACEHOLDERS) {
+    const filePath = path.join(UPLOAD_DIR, p.file);
+    try {
+      await access(filePath);
+    } catch {
+      await sharp(gradientPng(p.from, p.to), {
+        raw: { width: PH_W, height: PH_H, channels: 4 },
+      })
+        .png()
+        .toFile(filePath);
+    }
+    const st = await stat(filePath);
+    const existing = await prisma.mediaAsset.findFirst({ where: { filename: p.file } });
+    if (existing) {
+      await prisma.mediaAsset.update({
+        where: { id: existing.id },
+        data: {
+          url: `/media/${p.file}`,
+          mimeType: "image/png",
+          sizeBytes: st.size,
+          width: PH_W,
+          height: PH_H,
+        },
+      });
+    } else {
+      await prisma.mediaAsset.create({
+        data: {
+          filename: p.file,
+          url: `/media/${p.file}`,
+          mimeType: "image/png",
+          sizeBytes: st.size,
+          width: PH_W,
+          height: PH_H,
+        },
+      });
+    }
+  }
+}
 
 async function main() {
+  // Placeholders locais (uploads/ + biblioteca de mídia)
+  await ensurePlaceholders();
+
   // Admin
   const adminPass = await bcrypt.hash("admin123", 10);
   await prisma.user.upsert({
@@ -85,6 +170,19 @@ async function main() {
         },
       },
     });
+    // Garante que a imagem do produto aponte para o placeholder LOCAL — migra
+    // produtos criados por seeds antigos (que usavam URLs remotas do Google).
+    const firstImg = await prisma.productImage.findFirst({
+      where: { productId: product.id },
+      orderBy: { order: "asc" },
+    });
+    if (firstImg) {
+      if (firstImg.url !== p.img) {
+        await prisma.productImage.update({ where: { id: firstImg.id }, data: { url: p.img } });
+      }
+    } else {
+      await prisma.productImage.create({ data: { productId: product.id, url: p.img, order: 0 } });
+    }
     void product;
   }
 

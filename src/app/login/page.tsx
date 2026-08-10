@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function LoginPage() {
   const session = await auth();
-  if (session?.user) redirect("/conta");
+  if (session?.user) redirect(session.user.role === "ADMIN" ? "/admin" : "/conta");
 
   return (
     <div className="max-w-[1200px] mx-auto px-margin-mobile sm:px-lg py-xl flex flex-col items-center">

@@ -23,7 +23,13 @@ export async function loginAction(_prev: ActionState, formData: FormData): Promi
     if (e instanceof AuthError) return { error: "E-mail ou senha incorretos" };
     throw e;
   }
-  redirect("/conta");
+
+  // Admin vai direto para o painel; cliente vai para a conta.
+  const user = await prisma.user.findUnique({
+    where: { email: parsed.data.email },
+    select: { role: true },
+  });
+  redirect(user?.role === "ADMIN" ? "/admin" : "/conta");
 }
 
 export async function registerAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
