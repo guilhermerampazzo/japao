@@ -184,7 +184,7 @@ export function EmptyState({
       <span className="material-symbols-outlined text-4xl text-outline shrink-0">{icon}</span>
       <p className="font-medium text-on-surface text-balance">{title}</p>
       {description && (
-        <p className="text-sm text-on-surface-variant max-w-md text-pretty leading-relaxed">{description}</p>
+        <p className="text-sm text-on-surface-variant max-w-[26rem] text-pretty leading-relaxed">{description}</p>
       )}
       {action}
     </div>

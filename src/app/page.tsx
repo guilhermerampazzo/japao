@@ -235,7 +235,7 @@ export default async function Home() {
           <h2 className="font-display text-2xl md:text-3xl font-bold">
             Pronta para ter o Japão nas suas mãos?
           </h2>
-          <p className="text-white/90 max-w-xl">
+          <p className="text-white/90 max-w-[36rem]">
             Descubra produtos exclusivos e receba tudo diretamente do Japão com segurança,
             qualidade e confiança.
           </p>
