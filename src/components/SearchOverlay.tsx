@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useUI } from "@/stores/ui";
-import { formatBRL } from "@/lib/money";
+import PriceShow from "@/components/PriceShow";
 import type { ProductCardData } from "@/components/ProductCard";
 
 export default function SearchOverlay() {
@@ -108,7 +108,7 @@ export default function SearchOverlay() {
                 <div className="text-sm font-medium">{p.name}</div>
                 <div className="text-xs text-on-surface-variant">{p.category}</div>
               </div>
-              <span className="text-primary font-semibold text-sm">{formatBRL(p.priceCents)}</span>
+              <PriceShow priceCents={p.priceCents} className="text-primary font-semibold text-sm" />
             </Link>
           ))}
           {results.length > 0 && (

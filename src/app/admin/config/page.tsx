@@ -1,7 +1,7 @@
 import { getSiteSettings } from "@/lib/settings";
 import { PageHeader, CardSection, Field, Input, Textarea } from "@/components/admin/ui";
 import { SaveButton } from "@/components/admin/FormControls";
-import { updateIdentity, updateContact, updateStore, updateSeo } from "./actions";
+import { updateIdentity, updateContact, updateStore, updateCurrency, updateSeo } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +60,36 @@ export default async function ConfigPage() {
               />
             </Field>
             <SaveButton />
+          </form>
+        </CardSection>
+
+        <CardSection title="Moeda e Câmbio" description="Como os preços aparecem para o cliente. O dólar é uma conversão sobre o preço em reais.">
+          <form action={updateCurrency} className="flex flex-col gap-md">
+            <Field label="Moedas exibidas no site">
+              <select
+                name="currencyDisplay"
+                defaultValue={s.currencyDisplay ?? "BRL_ONLY"}
+                className="border border-outline-variant rounded-lg px-3 py-2 text-sm bg-white focus:border-primary focus:outline-none"
+              >
+                <option value="BRL_ONLY">Somente Real (R$)</option>
+                <option value="USD_ONLY">Somente Dólar (US$)</option>
+                <option value="BOTH">Real e Dólar (R$ + US$)</option>
+              </select>
+            </Field>
+            <Field
+              label="Cotação do dólar (R$ por US$)"
+              hint="Deixe em branco para usar a cotação em tempo real automaticamente."
+            >
+              <Input
+                name="usdRateCustom"
+                type="number"
+                step="0.01"
+                min="0.01"
+                placeholder="Ex: 5.40 (em branco = tempo real)"
+                defaultValue={s.usdRateCustom ? String(s.usdRateCustom) : ""}
+              />
+            </Field>
+            <SaveButton label="Salvar moeda" />
           </form>
         </CardSection>
 

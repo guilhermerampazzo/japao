@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { formatBRL, discountPercent } from "@/lib/money";
+import { discountPercent } from "@/lib/money";
+import PriceShow from "@/components/PriceShow";
 import { useCart } from "@/stores/cart";
 
 export type ProductCardData = {
   slug: string;
   name: string;
   category: string;
+  origin: "BRASIL" | "JAPAO";
   image: string;
   variantId: string;
   variantName: string;
@@ -46,12 +48,11 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
           </h3>
         </Link>
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mt-1">
-          <span className="text-primary font-semibold text-lg sm:text-xl">{formatBRL(product.priceCents)}</span>
-          {product.compareAtCents && (
-            <span className="text-xs text-on-surface-variant line-through">
-              {formatBRL(product.compareAtCents)}
-            </span>
-          )}
+          <PriceShow
+            priceCents={product.priceCents}
+            compareAtCents={product.compareAtCents}
+            className="text-primary font-semibold text-lg sm:text-xl"
+          />
         </div>
         <button
           onClick={() =>
@@ -62,6 +63,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
               variantName: product.variantName,
               priceCents: product.priceCents,
               image: product.image,
+              origin: product.origin,
             })
           }
           className="mt-auto bg-primary text-white text-sm font-medium py-2 rounded-md hover:bg-primary-container transition-colors flex items-center justify-center gap-1 min-h-10"

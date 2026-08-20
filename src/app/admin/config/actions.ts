@@ -55,6 +55,22 @@ export async function updateStore(formData: FormData) {
   revalidatePath("/checkout");
 }
 
+export async function updateCurrency(formData: FormData) {
+  await requireAdmin();
+  const display = str(formData, "currencyDisplay");
+  const mode = ["BRL_ONLY", "USD_ONLY", "BOTH"].includes(display) ? display : "BRL_ONLY";
+  const rateRaw = str(formData, "usdRateCustom");
+  const rate = rateRaw ? parseFloat(rateRaw.replace(",", ".")) : NaN;
+  await prisma.siteSettings.update({
+    where: { id: "singleton" },
+    data: {
+      currencyDisplay: mode,
+      usdRateCustom: isFinite(rate) && rate > 0 ? rate : null,
+    },
+  });
+  revalidatePath("/", "layout");
+}
+
 export async function updateSeo(formData: FormData) {
   await requireAdmin();
   await prisma.siteSettings.update({

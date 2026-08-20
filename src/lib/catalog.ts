@@ -5,6 +5,7 @@ type ProductWithRels = {
   slug: string;
   name: string;
   description: string;
+  origin: "BRASIL" | "JAPAO";
   category: { name: string };
   images: { url: string }[];
   variants: { id: string; name: string; priceCents: number; compareAtCents: number | null }[];
@@ -16,6 +17,7 @@ export function toCard(p: ProductWithRels): ProductCardData {
     slug: p.slug,
     name: p.name,
     category: p.category.name,
+    origin: p.origin,
     image: p.images[0]?.url ?? "",
     variantId: v?.id ?? "",
     variantName: v?.name ?? "",

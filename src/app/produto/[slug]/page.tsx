@@ -4,9 +4,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FiTruck, FiMapPin } from "react-icons/fi";
 import { getProductBySlug } from "@/lib/catalog";
-import { formatBRL, discountPercent } from "@/lib/money";
+import { discountPercent } from "@/lib/money";
 import { RichText } from "@/lib/richtext";
 import AddToCart from "@/components/AddToCart";
+import PriceShow from "@/components/PriceShow";
 
 export default async function ProductPage({
   params,
@@ -58,13 +59,12 @@ export default async function ProductPage({
               {product.ratingAvg.toFixed(1)} ({product.reviews.length} avaliações)
             </span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-primary font-semibold text-3xl">{formatBRL(variant.priceCents)}</span>
-            {variant.compareAtCents && (
-              <span className="text-on-surface-variant line-through">
-                {formatBRL(variant.compareAtCents)}
-              </span>
-            )}
+          <div className="flex items-center gap-3 flex-wrap">
+            <PriceShow
+              priceCents={variant.priceCents}
+              compareAtCents={variant.compareAtCents}
+              className="text-primary font-semibold text-3xl"
+            />
           </div>
           {product.origin === "BRASIL" ? (
             <span className="inline-flex items-center gap-2 self-start bg-tertiary-container text-on-tertiary-container text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full">
@@ -87,6 +87,7 @@ export default async function ProductPage({
             productSlug={product.slug}
             name={product.name}
             image={product.images[0]?.url ?? ""}
+            origin={product.origin}
             variants={product.variants.map((v) => ({
               id: v.id,
               name: v.name,

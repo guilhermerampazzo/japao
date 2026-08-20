@@ -9,6 +9,12 @@ export function formatBRL(cents: number): string {
   });
 }
 
+/** Converte centavos (R$) em valor em dólar e formata. usdRate = R$ por US$. */
+export function formatUSD(cents: number, usdRate: number): string {
+  const usd = cents / 100 / (usdRate > 0 ? usdRate : 1);
+  return usd.toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
+
 export function centsToReais(cents: number): number {
   return cents / 100;
 }

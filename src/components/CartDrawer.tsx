@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSyncExternalStore } from "react";
 import { useCart } from "@/stores/cart";
-import { formatBRL } from "@/lib/money";
+import PriceShow from "@/components/PriceShow";
 
 function useIsClient() {
   return useSyncExternalStore(
@@ -58,7 +58,16 @@ export default function CartDrawer() {
                   <div className="flex-1 flex flex-col">
                     <span className="font-medium text-sm leading-tight">{item.name}</span>
                     <span className="text-xs text-on-surface-variant">{item.variantName}</span>
-                    <span className="text-primary font-semibold mt-1">{formatBRL(item.priceCents)}</span>
+                    {item.origin === "BRASIL" ? (
+                      <span className="mt-0.5 inline-flex items-center gap-1 text-[10px] font-semibold text-tertiary uppercase tracking-wide">
+                        🇧🇷 Pronta entrega no Brasil
+                      </span>
+                    ) : (
+                      <span className="mt-0.5 inline-flex items-center gap-1 text-[10px] font-semibold text-secondary uppercase tracking-wide">
+                        🇯🇵 Direto do Japão
+                      </span>
+                    )}
+                    <PriceShow priceCents={item.priceCents} className="text-primary font-semibold mt-1" />
                     <div className="flex items-center gap-2 mt-auto">
                       <button onClick={() => setQty(item.variantId, item.quantity - 1)} className="w-7 h-7 rounded border border-outline-variant flex items-center justify-center">−</button>
                       <span className="w-6 text-center text-sm">{item.quantity}</span>
@@ -74,7 +83,7 @@ export default function CartDrawer() {
             <div className="border-t border-outline-variant p-md flex flex-col gap-sm">
               <div className="flex justify-between font-medium">
                 <span>Subtotal</span>
-                <span className="text-primary font-semibold text-xl">{formatBRL(subtotalCents())}</span>
+                <PriceShow priceCents={subtotalCents()} className="text-primary font-semibold text-xl" />
               </div>
               <Link href="/checkout" onClick={close} className="bg-primary text-white text-center py-md rounded-md font-medium hover:bg-primary-container transition-colors">
                 Finalizar compra

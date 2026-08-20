@@ -8,6 +8,7 @@ import CartDrawer from "@/components/CartDrawer";
 import SearchOverlay from "@/components/SearchOverlay";
 import { getSiteSettings, getNavItems } from "@/lib/settings";
 import { prisma } from "@/lib/prisma";
+import { CurrencyProvider } from "@/lib/currency-client";
 
 export const dynamic = "force-dynamic";
 
@@ -57,12 +58,14 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <Header storeName={settings.storeName} navItems={navItems} />
-        <main className="pt-20 flex-1">{children}</main>
-        <Footer storeName={settings.storeName} footerAbout={settings.footerAbout} pages={pages} />
-        <CartDrawer />
-        <SearchOverlay />
-        <WhatsAppFab number={settings.whatsappNumber} message={settings.whatsappMessage} />
+        <CurrencyProvider>
+          <Header storeName={settings.storeName} navItems={navItems} />
+          <main className="pt-20 flex-1">{children}</main>
+          <Footer storeName={settings.storeName} footerAbout={settings.footerAbout} pages={pages} />
+          <CartDrawer />
+          <SearchOverlay />
+          <WhatsAppFab number={settings.whatsappNumber} message={settings.whatsappMessage} />
+        </CurrencyProvider>
       </body>
     </html>
   );

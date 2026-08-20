@@ -206,6 +206,8 @@ model OrderItem {
   variantName  String
   priceCents   Int
   quantity     Int
+  // Origem escolhida pelo cliente na compra: "BRASIL" (pronta entrega) ou "JAPAO" (importado)
+  origin       String         @default("JAPAO")
 }
 
 model Payment {
@@ -242,6 +244,12 @@ model SiteSettings {
   // Loja / frete
   originCep                   String  @default("01001000")
   freeShippingThresholdCents  Int     @default(25000)
+
+  // Moeda / câmbio
+  // currencyDisplay: BRL_ONLY (padrão), USD_ONLY ou BOTH
+  currencyDisplay             String  @default("BRL_ONLY")
+  // Cotação fixa (R$ por US$). null = busca a cotação em tempo real.
+  usdRateCustom               Float?
 
   // Hero (home)
   heroEyebrow                 String  @default("Novidade Exclusiva")

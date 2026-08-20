@@ -9,7 +9,7 @@ import { createCheckoutPreference, isMercadoPagoConfigured } from "@/lib/mercado
 import { sendOrderConfirmation } from "@/lib/email";
 
 export type CheckoutInput = {
-  items: { variantId: string; quantity: number }[];
+  items: { variantId: string; quantity: number; origin?: "BRASIL" | "JAPAO" }[];
   address: {
     cep: string;
     street: string;
@@ -52,7 +52,8 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
     if (!v) throw new Error("Produto não encontrado");
     const qty = Math.max(1, Math.floor(item.quantity));
     if (v.stock < qty) throw new Error(`Estoque insuficiente para ${v.product.name}`);
-    return { variant: v, qty };
+    const origin = item.origin === "BRASIL" ? "BRASIL" : "JAPAO";
+    return { variant: v, qty, origin };
   });
 
   const subtotalCents = lines.reduce((sum, l) => sum + l.variant.priceCents * l.qty, 0);
@@ -103,6 +104,7 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
             variantName: l.variant.name,
             priceCents: l.variant.priceCents,
             quantity: l.qty,
+            origin: l.origin,
           })),
         },
       },

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/stores/cart";
 import { formatBRL } from "@/lib/money";
+import PriceShow from "@/components/PriceShow";
 import { createOrder } from "./actions";
 
 type ShipOption = { id: string; name: string; priceCents: number; deliveryDays: number };
@@ -92,7 +93,7 @@ export default function CheckoutClient() {
     }
     startTransition(async () => {
       const result = await createOrder({
-        items: items.map((i) => ({ variantId: i.variantId, quantity: i.quantity })),
+        items: items.map((i) => ({ variantId: i.variantId, quantity: i.quantity, origin: i.origin })),
         address: addr,
         shippingOptionId: shipId,
         couponCode: discountCents > 0 ? coupon : undefined,
@@ -146,7 +147,7 @@ export default function CheckoutClient() {
                   <input type="radio" name="ship" checked={shipId === o.id} onChange={() => setShipId(o.id)} />
                   <span className="flex-1">{o.name} · até {o.deliveryDays} dias úteis</span>
                   <span className="font-semibold text-primary">
-                    {o.priceCents === 0 ? "Grátis" : formatBRL(o.priceCents)}
+                    {o.priceCents === 0 ? "Grátis" : <PriceShow priceCents={o.priceCents} />}
                   </span>
                 </label>
               ))}
@@ -165,7 +166,14 @@ export default function CheckoutClient() {
                 <Image src={i.image} alt={i.name} fill sizes="48px" className="object-cover" />
               </div>
               <span className="flex-1 text-sm min-w-0">{i.name} × {i.quantity}</span>
-              <span className="text-sm font-medium">{formatBRL(i.priceCents * i.quantity)}</span>
+              <span className="text-sm font-medium text-right flex flex-col items-end">
+                <PriceShow priceCents={i.priceCents * i.quantity} />
+                {i.origin === "BRASIL" ? (
+                  <span className="text-[10px] font-semibold text-tertiary uppercase">🇧🇷 Brasil</span>
+                ) : (
+                  <span className="text-[10px] font-semibold text-secondary uppercase">🇯🇵 Japão</span>
+                )}
+              </span>
             </div>
           ))}
         </div>
@@ -184,12 +192,14 @@ export default function CheckoutClient() {
         {couponMsg && <p className="text-xs text-on-surface-variant">{couponMsg}</p>}
 
         <div className="border-t border-outline-variant pt-md flex flex-col gap-1 text-sm">
-          <Row label="Subtotal" value={formatBRL(subtotal)} />
-          {discountCents > 0 && <Row label="Desconto" value={`-${formatBRL(discountCents)}`} />}
-          <Row label="Frete" value={shippingCents === 0 ? (shipping ? "Grátis" : "—") : formatBRL(shippingCents)} />
+          <Row label="Subtotal" value={<PriceShow priceCents={subtotal} />} />
+          {discountCents > 0 && (
+            <Row label="Desconto" value={<span className="text-error">−<PriceShow priceCents={discountCents} /></span>} />
+          )}
+          <Row label="Frete" value={shippingCents === 0 ? (shipping ? "Grátis" : "—") : <PriceShow priceCents={shippingCents} />} />
           <div className="flex justify-between font-bold text-lg mt-2">
             <span>Total</span>
-            <span className="text-primary">{formatBRL(total)}</span>
+            <span className="text-primary"><PriceShow priceCents={total} /></span>
           </div>
         </div>
 
@@ -207,7 +217,7 @@ export default function CheckoutClient() {
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex justify-between text-on-surface-variant">
       <span>{label}</span>

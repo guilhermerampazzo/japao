@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSyncExternalStore } from "react";
 import { useCart } from "@/stores/cart";
 import { useUI } from "@/stores/ui";
-import { formatBRL } from "@/lib/money";
+import PriceShow from "@/components/PriceShow";
 
 export type NavItemData = { label: string; href: string };
 
@@ -74,7 +74,9 @@ export default function Header({
             className="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container relative"
           >
             <span className="material-symbols-outlined">shopping_cart</span>
-            <span className="hidden sm:block text-[10px] font-bold">{formatBRL(subtotal)}</span>
+            <span className="hidden sm:block text-[10px] font-bold">
+              <PriceShow priceCents={subtotal} />
+            </span>
             <span className="absolute -top-1 -right-1 bg-primary text-white text-[10px] min-w-4 h-4 px-1 rounded-full flex items-center justify-center">
               {itemCount}
             </span>

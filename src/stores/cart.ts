@@ -11,6 +11,7 @@ export type CartItem = {
   priceCents: number;
   image: string;
   quantity: number;
+  origin: "BRASIL" | "JAPAO";
 };
 
 type CartState = {
